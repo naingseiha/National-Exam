@@ -196,7 +196,7 @@ export default function ScoresPage() {
                   (s) => s.examType === selectedExamType && s.room === room.name
                 );
                 const scored = roomStudentsForRoom.filter(
-                  (s) => Object.values(s.scores).some((v) => v !== null && v !== undefined)
+                  (s) => Object.values(s.scores || {}).some((v) => v !== null && v !== undefined)
                 ).length;
                 return (
                   <button

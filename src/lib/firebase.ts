@@ -114,6 +114,7 @@ export function listenToFirebaseSync(callbacks: {
   const unsubStudents = onValue(studentsRef, (snapshot) => {
     if (snapshot.exists() && callbacks.onStudentsChange) {
       const val = snapshot.val();
+      if (!val) return;
       const list: Student[] = Array.isArray(val)
         ? val.filter(Boolean)
         : Object.values(val);
