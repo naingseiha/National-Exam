@@ -52,6 +52,37 @@ export function calculateStudentResult(student: Student): Student {
 }
 
 /**
+ * Get grade letter (A, B, C, D, E, F) for a single subject score
+ */
+export function getSubjectGradeLetter(score: number | null | undefined, maxScore: number): string {
+  if (score === null || score === undefined || isNaN(score)) return '-';
+  const pct = (score / maxScore) * 100;
+  if (pct >= 90) return 'A';
+  if (pct >= 80) return 'B';
+  if (pct >= 70) return 'C';
+  if (pct >= 60) return 'D';
+  if (pct >= 50) return 'E';
+  return 'F';
+}
+
+/**
+ * Get overall grade letter (A, B, C, D, E, F) for a student
+ */
+export function getOverallGradeLetter(student: Student): string {
+  if (student.status === 'pending' || student.average === undefined || student.average === null) return '-';
+  if (student.status === 'fail') return 'F';
+  const avg = student.average;
+  // Based on 50 average scale
+  const pct = (avg / 50) * 100;
+  if (pct >= 90) return 'A';
+  if (pct >= 80) return 'B';
+  if (pct >= 70) return 'C';
+  if (pct >= 60) return 'D';
+  if (pct >= 50) return 'E';
+  return 'F';
+}
+
+/**
  * Calculate rank for all students in a room
  */
 export function calculateRanks(students: Student[]): Student[] {

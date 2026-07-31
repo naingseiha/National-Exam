@@ -63,6 +63,7 @@ export interface PassCondition {
 export interface SchoolInfo {
   name: string;
   nameEn?: string;
+  department?: string;
   address?: string;
   examYear: string;
   examSession?: string;

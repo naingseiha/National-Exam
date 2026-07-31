@@ -56,11 +56,12 @@ export const useExamStore = create<ExamStore>()(
     (set, get) => ({
       // School info
       schoolInfo: {
-        name: 'មណ្ឌលប្រឡង',
-        examYear: '2026',
-        examSession: 'សម័យប្រឡង ២០២៦',
-        province: '',
-        examCenter: '',
+        department: 'មន្ទីរអប់រំ យុវជន និងកីឡា',
+        province: 'ខេត្តសៀមរាប',
+        name: 'វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ',
+        examYear: '២០២៦',
+        examSession: 'សម័យប្រឡង៖ ២២ កក្កដា ២០២៦',
+        examCenter: 'វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ',
       },
       setSchoolInfo: (info, skipFirebase) => {
         set({ schoolInfo: info });

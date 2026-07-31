@@ -15,10 +15,11 @@ export default function SeedLoader() {
     if (students.length === 0) {
       // Set school info from the Excel file
       setSchoolInfo({
+        department: 'មន្ទីរអប់រំ យុវជន និងកីឡា',
+        province: 'ខេត្តសៀមរាប',
         name: 'វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ',
-        examYear: '2026',
-        examSession: 'បញ្ជីលទ្ធផលប្រឡងសាក ទី១២ — ឆ្នាំសិក្សា ២០២៥-២០២៦',
-        province: 'ខេត្តស្វាយរៀង',
+        examYear: '២០២៦',
+        examSession: 'សម័យប្រឡង៖ ២២ កក្កដា ២០២៦',
         examCenter: 'វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ',
       });
       // Import all 311 students from Excel

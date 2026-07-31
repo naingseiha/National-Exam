@@ -1,229 +1,269 @@
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
-import { Student, ExamType } from '@/types';
+import html2canvas from 'html2canvas';
+import { Student, ExamType, SchoolInfo } from '@/types';
 import { EXAM_CONFIGS } from '@/config/examConfig';
+import { getSubjectGradeLetter, getOverallGradeLetter } from '@/lib/calculations';
 
 /**
- * Export results to PDF with beautiful A4 layout
+ * Generate Ministry MoEYS Official PDF report matching the user's sample format exactly
  */
 export async function exportToPDF(
   students: Student[],
   examType: ExamType,
   roomName: string,
-  schoolInfo: { name: string; examYear: string; examSession?: string; examCenter?: string }
+  schoolInfo: SchoolInfo
 ) {
   const config = EXAM_CONFIGS[examType];
   const subjects = config.subjects;
 
-  const doc = new jsPDF({
-    orientation: 'landscape',
-    unit: 'mm',
-    format: 'a4',
-  });
+  const totalStudents = students.length;
+  const femaleStudents = students.filter((s) => s.gender === 'female').length;
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
+  const examStreamLabel =
+    examType === 'grade12_science'
+      ? 'ឯកទេស វិទ្យាសាស្ត្រ'
+      : examType === 'grade12_social'
+      ? 'ឯកទេស វិទ្យាសាស្ត្រសង្គម'
+      : 'ថ្នាក់ទី ៩';
 
-  // Header
-  doc.setFontSize(10);
-  doc.setTextColor(50, 50, 50);
-  doc.text('ព្រះរាជាណាចក្រកម្ពុជា', pageWidth / 2, 12, { align: 'center' });
-  doc.text('ជាតិ សាសនា ព្រះមហាក្សត្រ', pageWidth / 2, 17, { align: 'center' });
+  // Create temporary container for HTML-to-Image rendering
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.left = '-9999px';
+  container.style.top = '-9999px';
+  container.style.width = '1120px'; // A4 Landscape width ratio
+  container.style.backgroundColor = '#ffffff';
+  container.style.color = '#000000';
+  container.style.fontFamily = "'Noto Sans Khmer', 'Khmer OS Battambang', sans-serif";
+  container.style.padding = '24px';
+  container.style.boxSizing = 'border-box';
 
-  doc.setFontSize(13);
-  doc.setFont('helvetica', 'bold');
-  doc.text(schoolInfo.name, pageWidth / 2, 26, { align: 'center' });
+  const deptName = schoolInfo.department || 'មន្ទីរអប់រំ យុវជន និងកីឡា';
+  const provName = schoolInfo.province || 'ខេត្តសៀមរាប';
+  const schoolName = schoolInfo.name || 'វិទ្យាល័យ ហ៊ុន សែន ស្វាយធំ';
+  const sessionText = schoolInfo.examSession || `សម័យប្រឡង៖ ២២ កក្កដា ២០២៦`;
 
-  doc.setFontSize(11);
-  doc.setFont('helvetica', 'normal');
-  doc.text(config.name, pageWidth / 2, 33, { align: 'center' });
-  doc.text(`${schoolInfo.examSession || `សម័យប្រឡង ${schoolInfo.examYear}`}`, pageWidth / 2, 39, { align: 'center' });
+  // Calculate total max score
+  const totalMaxScore = subjects.reduce((sum, s) => sum + s.maxScore, 0);
 
-  doc.setFontSize(12);
-  doc.setFont('helvetica', 'bold');
-  doc.text(`បន្ទប់ : ${roomName}`, 15, 47);
+  // Generate rows HTML
+  const rowsHtml = students
+    .map((student, idx) => {
+      const isFail = student.status === 'fail';
+      const genderSymbol = student.gender === 'female' ? 'ស' : 'ប';
+      const overallGrade = getOverallGradeLetter(student);
 
-  const passed = students.filter((s) => s.status === 'pass').length;
-  const failed = students.filter((s) => s.status === 'fail').length;
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
-  doc.text(`ចំនួនសិស្សសរុប: ${students.length}  |  ជាប់: ${passed}  |  ធ្លាក់: ${failed}`, pageWidth - 15, 47, { align: 'right' });
+      const subjectCells = subjects
+        .map((sub) => {
+          const score = student.scores[sub.id];
+          const grade = getSubjectGradeLetter(score, sub.maxScore);
+          return `
+            <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold;">
+              ${score !== null && score !== undefined ? score : '-'}
+            </td>
+            <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
+              grade === 'F' ? 'color: #d32f2f;' : ''
+            }">
+              ${grade}
+            </td>
+          `;
+        })
+        .join('');
 
-  // Table
-  const headers = [
-    'ល.រ',
-    'លេខប្រឡង',
-    'ឈ្មោះ',
-    'ភេទ',
-    ...subjects.map((s) => `${s.nameEn}\n/${s.maxScore}`),
-    'Total',
-    'Avg',
-    'Result',
-    'Rank',
-  ];
+      return `
+        <tr style="position: relative;">
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; position: relative;">
+            ${
+              isFail
+                ? `<span style="border: 1.5px solid #d32f2f; border-radius: 50%; padding: 1px 4px; color: #d32f2f; font-weight: bold; display: inline-block;">${
+                    idx + 1
+                  }</span>`
+                : `${idx + 1}`
+            }
+          </td>
+          <td style="border: 1px solid #000; text-align: left; padding: 4px 6px; font-size: 11px; font-weight: bold; white-space: nowrap; ${
+            isFail ? 'text-decoration: line-through; text-decoration-color: #d32f2f; color: #d32f2f;' : ''
+          }">
+            ${student.name}
+          </td>
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px;">
+            ${genderSymbol}
+          </td>
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 10px;">
+            ${student.room}
+          </td>
+          ${subjectCells}
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
+            isFail ? 'color: #d32f2f;' : ''
+          }">
+            ${student.totalScore ?? '-'}
+          </td>
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
+            isFail ? 'color: #d32f2f;' : ''
+          }">
+            ${overallGrade}
+          </td>
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold;">
+            ${student.rank ?? '-'}
+          </td>
+        </tr>
+      `;
+    })
+    .join('');
 
-  const rows = students.map((student, i) => [
-    i + 1,
-    student.examNumber,
-    student.name,
-    student.gender === 'female' ? 'F' : 'M',
-    ...subjects.map((s) => student.scores[s.id] ?? '-'),
-    student.totalScore ?? '-',
-    student.average ?? '-',
-    student.status === 'pass' ? 'PASS' : student.status === 'fail' ? 'FAIL' : '-',
-    student.rank ?? '-',
-  ]);
+  const subjectHeaderCols = subjects
+    .map(
+      (sub) => `
+      <th colspan="2" style="border: 1px solid #000; text-align: center; padding: 4px; font-size: 11px; font-weight: bold;">
+        ${sub.name}
+      </th>
+    `
+    )
+    .join('');
 
-  autoTable(doc, {
-    head: [headers],
-    body: rows,
-    startY: 52,
-    styles: {
-      fontSize: 8,
-      cellPadding: 2,
-      textColor: [30, 30, 30],
-      lineColor: [180, 180, 180],
-      lineWidth: 0.3,
-    },
-    headStyles: {
-      fillColor: [30, 64, 175],
-      textColor: [255, 255, 255],
-      fontStyle: 'bold',
-      halign: 'center',
-    },
-    columnStyles: {
-      0: { halign: 'center', cellWidth: 8 },
-      1: { halign: 'center', cellWidth: 20 },
-      2: { cellWidth: 40 },
-      3: { halign: 'center', cellWidth: 10 },
-    },
-    didParseCell: (data) => {
-      // Red background for failed students
-      if (data.section === 'body') {
-        const rowIndex = data.row.index;
-        if (students[rowIndex]?.status === 'fail') {
-          data.cell.styles.textColor = [180, 50, 50];
-          data.cell.styles.fillColor = [255, 240, 240];
-        }
-      }
-    },
-    didDrawCell: (data) => {
-      // Draw red line across failed student rows
-      if (data.section === 'body') {
-        const rowIndex = data.row.index;
-        if (students[rowIndex]?.status === 'fail') {
-          const { x, y, width, height } = data.cell;
-          doc.setDrawColor(220, 50, 50);
-          doc.setLineWidth(0.5);
-          doc.line(x, y + height / 2, x + width, y + height / 2);
-        }
-      }
-    },
-  });
+  const subjectSubHeaderCols = subjects
+    .map(
+      () => `
+      <th style="border: 1px solid #000; text-align: center; padding: 2px; font-size: 9px;">ពិន្ទុ</th>
+      <th style="border: 1px solid #000; text-align: center; padding: 2px; font-size: 9px;">និទ្ទេស</th>
+    `
+    )
+    .join('');
 
-  // Footer
-  const finalY = (doc as unknown as { lastAutoTable?: { finalY: number } }).lastAutoTable?.finalY || pageHeight - 20;
-  doc.setFontSize(9);
-  doc.setFont('helvetica', 'normal');
-  doc.text(
-    `បោះពុម្ភ: ${new Date().toLocaleDateString('km-KH')}`,
-    15,
-    Math.min(finalY + 10, pageHeight - 10)
-  );
+  const subjectMaxHeaderCols = subjects
+    .map(
+      (sub) => `
+      <th colspan="2" style="border: 1px solid #000; text-align: center; padding: 2px; font-size: 10px; font-weight: bold; background-color: #f3f4f6;">
+        ${sub.maxScore}
+      </th>
+    `
+    )
+    .join('');
 
-  doc.save(`លទ្ធផលប្រឡង_បន្ទប់${roomName}_${schoolInfo.examYear}.pdf`);
+  container.innerHTML = `
+    <div style="width: 100%; background: #ffffff; color: #000000;">
+      <!-- Top Header Row -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+        <!-- Left: Dept & School -->
+        <div style="text-align: left; font-size: 12px; font-weight: bold; line-height: 1.5;">
+          <div>${deptName} ${provName}</div>
+          <div>${schoolName}</div>
+        </div>
+
+        <!-- Center: Kingdom Header -->
+        <div style="text-align: center; line-height: 1.4;">
+          <div style="font-size: 14px; font-weight: bold;">ព្រះរាជាណាចក្រកម្ពុជា</div>
+          <div style="font-size: 12px; font-weight: bold;">ជាតិ សាសនា ព្រះមហាក្សត្រ</div>
+        </div>
+
+        <!-- Right: Stream & Counts -->
+        <div style="text-align: right; font-size: 12px; font-weight: bold; line-height: 1.5;">
+          <div>${examStreamLabel}</div>
+          <div>សិស្សសរុប ${totalStudents}នាក់ &nbsp; ស្រី ${femaleStudents}នាក់</div>
+        </div>
+      </div>
+
+      <!-- Document Main Title -->
+      <div style="text-align: center; margin-bottom: 14px;">
+        <div style="font-size: 14px; font-weight: bold; margin-bottom: 4px;">
+          លទ្ធផលប្រឡងសាកល្បងសញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ
+        </div>
+        <div style="font-size: 12px; font-weight: bold;">
+          ${sessionText}
+        </div>
+      </div>
+
+      <!-- Main Results Table -->
+      <table style="width: 100%; border-collapse: collapse; border: 2px solid #000; font-family: inherit;">
+        <thead>
+          <tr style="background-color: #ffffff;">
+            <th rowspan="2" style="border: 1px solid #000; width: 35px; text-align: center; font-size: 11px; font-weight: bold;">ល.រ</th>
+            <th rowspan="2" style="border: 1px solid #000; text-align: center; font-size: 11px; font-weight: bold; min-width: 140px;">គោត្តនាម និងនាមសិស្ស</th>
+            <th rowspan="2" style="border: 1px solid #000; width: 30px; text-align: center; font-size: 11px; font-weight: bold;">ភេទ</th>
+            <th rowspan="2" style="border: 1px solid #000; width: 40px; text-align: center; font-size: 11px; font-weight: bold;">ថ្នាក់</th>
+            ${subjectHeaderCols}
+            <th rowspan="2" style="border: 1px solid #000; width: 45px; text-align: center; font-size: 11px; font-weight: bold;">ពិន្ទុសរុប</th>
+            <th rowspan="2" style="border: 1px solid #000; width: 45px; text-align: center; font-size: 11px; font-weight: bold;">និទ្ទេសសរុប</th>
+            <th rowspan="2" style="border: 1px solid #000; width: 45px; text-align: center; font-size: 11px; font-weight: bold;">ចំណាត់ថ្នាក់</th>
+          </tr>
+          <tr style="background-color: #ffffff;">
+            ${subjectSubHeaderCols}
+          </tr>
+          <tr style="background-color: #f3f4f6;">
+            <th style="border: 1px solid #000; text-align: center; font-size: 9px; font-weight: bold;">No</th>
+            <th style="border: 1px solid #000; text-align: center; font-size: 9px; font-weight: bold;">ឈ្មោះសិស្ស</th>
+            <th style="border: 1px solid #000;"></th>
+            <th style="border: 1px solid #000;"></th>
+            ${subjectMaxHeaderCols}
+            <th style="border: 1px solid #000; text-align: center; font-size: 10px; font-weight: bold; background-color: #f3f4f6;">${totalMaxScore}</th>
+            <th style="border: 1px solid #000; background-color: #f3f4f6;"></th>
+            <th style="border: 1px solid #000; background-color: #f3f4f6;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  document.body.appendChild(container);
+
+  try {
+    const canvas = await html2canvas(container, {
+      scale: 2, // High resolution DPI
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff',
+    });
+
+    document.body.removeChild(container);
+
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: 'a4',
+    });
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    const imgWidth = pdfWidth - 16; // 8mm margin left/right
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 8; // Top margin
+
+    pdf.addImage(imgData, 'PNG', 8, position, imgWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    // Multi-page handling if table is long
+    while (heightLeft >= 0) {
+      position = heightLeft - imgHeight + 8;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 8, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    pdf.save(`របាយការណ៍លទ្ធផល_បន្ទប់${roomName}_${schoolInfo.examYear || '2026'}.pdf`);
+    return true;
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    if (document.body.contains(container)) {
+      document.body.removeChild(container);
+    }
+    return false;
+  }
 }
 
 /**
- * Export all rooms to PDF (one per page)
+ * Export all rooms to PDF (one per page or combined)
  */
 export async function exportAllToPDF(
   students: Student[],
   examType: ExamType,
-  schoolInfo: { name: string; examYear: string; examSession?: string }
+  schoolInfo: SchoolInfo
 ) {
-  const config = EXAM_CONFIGS[examType];
-  const subjects = config.subjects;
-  const rooms = [...new Set(students.map((s) => s.room))].sort();
-
-  const doc = new jsPDF({
-    orientation: 'landscape',
-    unit: 'mm',
-    format: 'a4',
-  });
-
-  const pageWidth = doc.internal.pageSize.getWidth();
-
-  rooms.forEach((room, roomIndex) => {
-    if (roomIndex > 0) doc.addPage();
-
-    const roomStudents = students.filter((s) => s.room === room);
-    const passed = roomStudents.filter((s) => s.status === 'pass').length;
-
-    doc.setFontSize(10);
-    doc.setTextColor(50, 50, 50);
-    doc.text('ព្រះរាជាណាចក្រកម្ពុជា', pageWidth / 2, 12, { align: 'center' });
-    doc.text('ជាតិ សាសនា ព្រះមហាក្សត្រ', pageWidth / 2, 17, { align: 'center' });
-
-    doc.setFontSize(13);
-    doc.setFont('helvetica', 'bold');
-    doc.text(schoolInfo.name, pageWidth / 2, 26, { align: 'center' });
-
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'normal');
-    doc.text(config.name, pageWidth / 2, 33, { align: 'center' });
-    doc.text(`${schoolInfo.examSession || `សម័យប្រឡង ${schoolInfo.examYear}`}`, pageWidth / 2, 39, { align: 'center' });
-
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'bold');
-    doc.text(`បន្ទប់ : ${room}`, 15, 47);
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.text(
-      `ចំនួន: ${roomStudents.length}  |  ជាប់: ${passed}  |  ធ្លាក់: ${roomStudents.length - passed}`,
-      pageWidth - 15,
-      47,
-      { align: 'right' }
-    );
-
-    const headers = [
-      'ល.រ', 'លេខប្រឡង', 'ឈ្មោះ', 'ភេទ',
-      ...subjects.map((s) => `${s.nameEn}\n/${s.maxScore}`),
-      'Total', 'Avg', 'Result', 'Rank',
-    ];
-
-    const rows = roomStudents.map((student, i) => [
-      i + 1,
-      student.examNumber,
-      student.name,
-      student.gender === 'female' ? 'F' : 'M',
-      ...subjects.map((s) => student.scores[s.id] ?? '-'),
-      student.totalScore ?? '-',
-      student.average ?? '-',
-      student.status === 'pass' ? 'PASS' : 'FAIL',
-      student.rank ?? '-',
-    ]);
-
-    autoTable(doc, {
-      head: [headers],
-      body: rows,
-      startY: 52,
-      styles: { fontSize: 8, cellPadding: 2 },
-      headStyles: { fillColor: [30, 64, 175], textColor: [255, 255, 255], fontStyle: 'bold', halign: 'center' },
-      didDrawCell: (data) => {
-        if (data.section === 'body') {
-          const rowIndex = data.row.index;
-          if (roomStudents[rowIndex]?.status === 'fail') {
-            const { x, y, width, height } = data.cell;
-            doc.setDrawColor(220, 50, 50);
-            doc.setLineWidth(0.6);
-            doc.line(x, y + height / 2, x + width, y + height / 2);
-          }
-        }
-      },
-    });
-  });
-
-  doc.save(`លទ្ធផលប្រឡងទាំងអស់_${schoolInfo.examYear}.pdf`);
+  return exportToPDF(students, examType, 'ទាំងអស់', schoolInfo);
 }
