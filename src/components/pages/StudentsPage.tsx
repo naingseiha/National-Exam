@@ -41,8 +41,13 @@ export default function StudentsPage() {
       (s) =>
         !searchQuery ||
         s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        s.examNumber.includes(searchQuery)
-    );
+        (s.examNumber && s.examNumber.includes(searchQuery))
+    )
+    .sort((a, b) => {
+      const numA = parseInt((a.examNumber || '').replace(/\D/g, '')) || 0;
+      const numB = parseInt((b.examNumber || '').replace(/\D/g, '')) || 0;
+      return numA - numB;
+    });
 
   const colors = EXAM_TYPE_COLORS[selectedExamType];
 

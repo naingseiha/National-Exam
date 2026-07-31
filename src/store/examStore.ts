@@ -206,7 +206,13 @@ export const useExamStore = create<ExamStore>()(
 
       // Computed getters
       getStudentsByRoom: (examType, room) => {
-        return get().students.filter((s) => s.examType === examType && s.room === room);
+        return get().students
+          .filter((s) => s.examType === examType && s.room === room)
+          .sort((a, b) => {
+            const numA = parseInt((a.examNumber || '').replace(/\D/g, '')) || 0;
+            const numB = parseInt((b.examNumber || '').replace(/\D/g, '')) || 0;
+            return numA - numB;
+          });
       },
 
       getRooms: (examType) => {
