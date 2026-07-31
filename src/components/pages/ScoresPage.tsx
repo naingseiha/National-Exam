@@ -51,6 +51,7 @@ export default function ScoresPage() {
     });
     setLocalScores(init);
     setErrors({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeRoom, selectedExamType, students.length]);
 
   const handleScoreChange = useCallback(

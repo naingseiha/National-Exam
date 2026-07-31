@@ -71,6 +71,7 @@ export default function StudentsPage() {
     if (file?.name.endsWith('.xlsx') || file?.name.endsWith('.xls')) {
       handleFileUpload(file);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedExamType]);
 
   const handleAddStudent = () => {

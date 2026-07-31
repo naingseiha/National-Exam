@@ -21,7 +21,7 @@ export default function FirebaseSync() {
 
     setFirebaseStatus('connected');
 
-    const unsubscribe = listenToFirebaseSync({
+    return listenToFirebaseSync({
       onStudentsChange: (remoteStudents) => {
         if (remoteStudents && remoteStudents.length > 0) {
           setStudentsFromRemote(remoteStudents);
@@ -41,10 +41,7 @@ export default function FirebaseSync() {
         }
       },
     });
-
-    return () => {
-      unsubscribe();
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return null;

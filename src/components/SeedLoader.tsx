@@ -24,6 +24,7 @@ export default function SeedLoader() {
       // Import all 311 students from Excel
       importStudents(seedData as Omit<Student, 'id'>[]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return null;
