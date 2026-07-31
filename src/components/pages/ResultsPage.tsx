@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useExamStore } from '@/store/examStore';
 import { calculateStats } from '@/lib/calculations';
-import { EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
+import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
 import { ExamType } from '@/types';
 import { FileText, Search } from 'lucide-react';
 
@@ -30,9 +30,9 @@ export default function ResultsPage() {
     ? selectedRoom
     : 'all';
 
-  const config = examConfigs[selectedExamType];
-  const subjects = config.subjects;
-  const colors = EXAM_TYPE_COLORS[selectedExamType];
+  const config = examConfigs?.[selectedExamType] || EXAM_CONFIGS[selectedExamType] || EXAM_CONFIGS.grade12_science;
+  const subjects = config?.subjects || [];
+  const colors = EXAM_TYPE_COLORS[selectedExamType] || EXAM_TYPE_COLORS.grade12_science;
 
   const displayStudents = useMemo(() => {
     let filtered = students.filter((s) => s.examType === selectedExamType);
@@ -243,7 +243,8 @@ export default function ResultsPage() {
                         </span>
                       </td>
                       {subjects.map((sub) => {
-                        const score = student.scores[sub.id];
+                        const scores = student.scores || {};
+                        const score = scores[sub.id];
                         const isPoor = score !== null && score !== undefined && score < sub.maxScore * 0.25;
                         return (
                           <td

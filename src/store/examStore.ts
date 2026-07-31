@@ -214,7 +214,19 @@ export const useExamStore = create<ExamStore>()(
     }),
     {
       name: 'national-exam-storage',
-      version: 1,
+      version: 2,
+      merge: (persistedState: unknown, currentState: ExamStore) => {
+        const p = (persistedState as Partial<ExamStore>) || {};
+        return {
+          ...currentState,
+          ...p,
+          examConfigs: {
+            grade9: { ...EXAM_CONFIGS.grade9, ...(p.examConfigs?.grade9 || {}) },
+            grade12_science: { ...EXAM_CONFIGS.grade12_science, ...(p.examConfigs?.grade12_science || {}) },
+            grade12_social: { ...EXAM_CONFIGS.grade12_social, ...(p.examConfigs?.grade12_social || {}) },
+          },
+        };
+      },
     }
   )
 );

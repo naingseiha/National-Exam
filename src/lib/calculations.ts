@@ -5,9 +5,10 @@ import { EXAM_CONFIGS } from '@/config/examConfig';
  * Calculate pass/fail status and scores for a student
  */
 export function calculateStudentResult(student: Student): Student {
-  const config = EXAM_CONFIGS[student.examType];
-  const subjects = config.subjects;
+  const config = EXAM_CONFIGS[student.examType] || EXAM_CONFIGS.grade12_science;
+  const subjects = config.subjects || [];
   const passCondition = config.passConditions;
+  const scores = student.scores || {};
 
   let totalWeighted = 0;
   let totalCoefficient = 0;
@@ -15,7 +16,7 @@ export function calculateStudentResult(student: Student): Student {
   let hasNull = false;
 
   subjects.forEach((subject) => {
-    const score = student.scores[subject.id];
+    const score = scores[subject.id];
     if (score === null || score === undefined) {
       hasNull = true;
       return;
@@ -35,7 +36,7 @@ export function calculateStudentResult(student: Student): Student {
   );
   const average = totalCoefficient > 0 ? (totalWeighted / (maxPossible / 20)) : 0;
   const totalScore = subjects.reduce(
-    (sum, s) => sum + (student.scores[s.id] ?? 0),
+    (sum, s) => sum + (scores[s.id] ?? 0),
     0
   );
 

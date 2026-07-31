@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useExamStore } from '@/store/examStore';
-import { EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
+import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
 import { ExamType } from '@/types';
 import { ClipboardList, Save, CheckCircle } from 'lucide-react';
 
@@ -36,16 +36,17 @@ export default function ScoresPage() {
     ? getStudentsByRoom(selectedExamType, activeRoom)
     : [];
 
-  const config = examConfigs[selectedExamType];
-  const subjects = config.subjects;
+  const config = examConfigs?.[selectedExamType] || EXAM_CONFIGS[selectedExamType] || EXAM_CONFIGS.grade12_science;
+  const subjects = config?.subjects || [];
 
   // Initialize local scores from store
   useEffect(() => {
     const init: Record<string, Record<string, string>> = {};
     roomStudents.forEach((s) => {
       init[s.id] = {};
+      const scores = s.scores || {};
       subjects.forEach((sub) => {
-        const val = s.scores[sub.id];
+        const val = scores[sub.id];
         init[s.id][sub.id] = val !== null && val !== undefined ? String(val) : '';
       });
     });
