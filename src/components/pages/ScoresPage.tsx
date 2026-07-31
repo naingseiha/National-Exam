@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useExamStore } from '@/store/examStore';
 import { pushStudentsToFirebase, isFirebaseConfigured } from '@/lib/firebase';
 import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
@@ -29,6 +29,7 @@ export default function ScoresPage() {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [localScores, setLocalScores] = useState<Record<string, Record<string, string>>>({});
   const [errors, setErrors] = useState<Record<string, Record<string, string>>>({});
+  const [isDirty, setIsDirty] = useState(false); // tracks unsaved changes
 
   const rooms = getRooms(selectedExamType);
   const activeRoom = selectedRoom && rooms.find((r) => r.name === selectedRoom)
@@ -55,8 +56,21 @@ export default function ScoresPage() {
     });
     setLocalScores(init);
     setErrors({});
+    setIsDirty(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeRoom, selectedExamType, students.length]);
+
+  // Warn user before closing/reloading tab with unsaved changes
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [isDirty]);
 
   const handleScoreChange = useCallback(
     (studentId: string, subjectId: string, value: string, maxScore: number) => {
@@ -64,6 +78,7 @@ export default function ScoresPage() {
         ...prev,
         [studentId]: { ...(prev[studentId] || {}), [subjectId]: value },
       }));
+      setIsDirty(true);
 
       // Validate
       const num = parseFloat(value);
@@ -77,6 +92,32 @@ export default function ScoresPage() {
       }));
     },
     []
+  );
+
+  // Enter key → move focus to the same subject column, next student row
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>, rowIdx: number, colIdx: number) => {
+      if (e.key !== 'Enter' && e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      e.preventDefault();
+      const totalRows = roomStudents.length;
+      const totalCols = subjects.length;
+      let nextRow = rowIdx;
+      let nextCol = colIdx;
+
+      if (e.key === 'Enter' || e.key === 'ArrowDown') {
+        nextRow = rowIdx + 1;
+        if (nextRow >= totalRows) { nextRow = 0; nextCol = (colIdx + 1) % totalCols; }
+      } else if (e.key === 'ArrowUp') {
+        nextRow = rowIdx - 1;
+        if (nextRow < 0) { nextRow = totalRows - 1; nextCol = (colIdx - 1 + totalCols) % totalCols; }
+      }
+
+      const next = document.querySelector<HTMLInputElement>(
+        `input[data-row="${nextRow}"][data-col="${nextCol}"]`
+      );
+      if (next) { next.focus(); next.select(); }
+    },
+    [roomStudents.length, subjects.length]
   );
 
   const saveAllScores = async () => {
@@ -128,6 +169,7 @@ export default function ScoresPage() {
 
     setSaving(false);
     setSavedMsg(true);
+    setIsDirty(false);
     setTimeout(() => setSavedMsg(false), 3000);
   };
 
@@ -181,6 +223,17 @@ export default function ScoresPage() {
         </div>
       )}
 
+      {isDirty && !saving && (
+        <div
+          className="flex items-center gap-3 p-3 rounded-xl mb-4 animate-pulse"
+          style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.4)' }}
+        >
+          <AlertCircle size={16} style={{ color: '#f59e0b', flexShrink: 0 }} />
+          <p className="text-sm" style={{ color: '#fcd34d' }}>
+            មានការផ្លាស់ប្ដូរដែលមិនទាន់ Save — ចុច <strong>រក្សាទុក</strong> ដើម្បីរក្សា​ទុក!
+          </p>
+        </div>
+      )}
       {saveError && (
         <div
           className="flex items-center gap-3 p-4 rounded-xl mb-6"
@@ -320,7 +373,7 @@ export default function ScoresPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {roomStudents.map((student) => {
+                    {roomStudents.map((student, rowIdx) => {
                       const isFail = student.status === 'fail';
                       return (
                         <tr key={student.id} className={isFail ? 'failed' : ''}>
@@ -331,7 +384,7 @@ export default function ScoresPage() {
                           <td style={{ fontSize: '0.8rem', color: student.gender === 'female' ? '#f9a8d4' : '#93c5fd' }}>
                             {student.gender === 'female' ? 'ស្រី' : 'ប'}
                           </td>
-                          {subjects.map((sub) => {
+                          {subjects.map((sub, colIdx) => {
                             const val = localScores[student.id]?.[sub.id] ?? '';
                             const err = errors[student.id]?.[sub.id];
                             return (
@@ -342,9 +395,12 @@ export default function ScoresPage() {
                                     min={0}
                                     max={sub.maxScore}
                                     value={val}
+                                    data-row={rowIdx}
+                                    data-col={colIdx}
                                     onChange={(e) =>
                                       handleScoreChange(student.id, sub.id, e.target.value, sub.maxScore)
                                     }
+                                    onKeyDown={(e) => handleKeyDown(e, rowIdx, colIdx)}
                                     className={`score-input ${err ? 'invalid' : ''}`}
                                     style={{ width: '68px' }}
                                     placeholder="-"
