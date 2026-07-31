@@ -4,9 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useExamStore } from '@/store/examStore';
 import {
   isFirebaseConfigured,
-  listenToFirebaseSync,
   fetchStudentsOnce,
-  pushStudentsToFirebase,
 } from '@/lib/firebase';
 import seedData from '@/data/seedStudents.json';
 import { Student, SchoolInfo } from '@/types';
@@ -37,7 +35,6 @@ export default function SeedLoader() {
     importStudents,
     setSchoolInfo,
     setStudentsFromRemote,
-    setExamConfigsFromRemote,
   } = useExamStore();
 
   const done = useRef(false);

@@ -92,7 +92,7 @@ export function calculateRanks(students: Student[]): Student[] {
     .sort((a, b) => (b.average ?? 0) - (a.average ?? 0));
 
   const withRanks = students.map((student) => {
-    if (student.status !== 'pass') return { ...student, rank: undefined };
+    if (student.status !== 'pass') return { ...student, rank: null };
     const rank = sorted.findIndex((s) => s.id === student.id) + 1;
     return { ...student, rank };
   });

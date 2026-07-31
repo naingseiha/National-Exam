@@ -29,10 +29,10 @@ export interface Student {
   classNumber?: string; // ថ្នាក់
   examType: ExamType;
   scores: Record<string, number | null>; // subjectId -> score
-  totalScore?: number;
-  totalCoefficient?: number;
-  average?: number;
-  rank?: number;
+  totalScore?: number | null;
+  totalCoefficient?: number | null;
+  average?: number | null;
+  rank?: number | null;
   status?: StudentStatus;
   note?: string;
 }

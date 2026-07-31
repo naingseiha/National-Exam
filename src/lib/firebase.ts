@@ -41,6 +41,23 @@ const DB_PATHS = {
 };
 
 /**
+ * Remove undefined values recursively — Firebase rejects undefined properties.
+ */
+function sanitizeForFirebase<T>(obj: T): T {
+  if (obj === null || obj === undefined) return null as T;
+  if (typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) return obj.map(sanitizeForFirebase) as T;
+  const cleaned: Record<string, unknown> = {};
+  for (const key of Object.keys(obj as object)) {
+    const val = (obj as Record<string, unknown>)[key];
+    if (val !== undefined) {
+      cleaned[key] = sanitizeForFirebase(val);
+    }
+  }
+  return cleaned as T;
+}
+
+/**
  * Save all students to Firebase Realtime Database.
  * Returns true on success, false on failure.
  */
@@ -55,7 +72,7 @@ export async function pushStudentsToFirebase(students: Student[]): Promise<boole
     const studentsRef = ref(db, DB_PATHS.STUDENTS);
     const dataMap: Record<string, Student> = {};
     students.forEach((s) => {
-      dataMap[s.id] = s;
+      dataMap[s.id] = sanitizeForFirebase(s);
     });
     await set(studentsRef, dataMap);
     console.log('[Firebase] Pushed', students.length, 'students successfully');
