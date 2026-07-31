@@ -152,7 +152,6 @@ export function exportToExcel(
   // Column headers
   const colHeaders = [
     'ល.រ',
-    'លេខប្រឡង',
     'ឈ្មោះ',
     'ភេទ',
     ...subjects.map((s) => `${s.name}\n(/${s.maxScore})`),
@@ -165,7 +164,6 @@ export function exportToExcel(
   // Data rows
   const dataRows = students.map((student, index) => [
     index + 1,
-    student.examNumber,
     student.name,
     student.gender === 'female' ? 'ស្រី' : 'ប្រុស',
     ...subjects.map((s) => (student.scores || {})[s.id] ?? ''),
@@ -181,7 +179,6 @@ export function exportToExcel(
   // Column widths
   const colWidths = [
     { wch: 5 },   // ល.រ
-    { wch: 12 },  // លេខប្រឡង
     { wch: 25 },  // ឈ្មោះ
     { wch: 8 },   // ភេទ
     ...subjects.map(() => ({ wch: 10 })),

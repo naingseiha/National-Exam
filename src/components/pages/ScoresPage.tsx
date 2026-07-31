@@ -266,7 +266,6 @@ export default function ScoresPage() {
                   <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                     <tr>
                       <th style={{ width: '45px' }}>ល.រ</th>
-                      <th style={{ width: '100px' }}>លេខប្រឡង</th>
                       <th style={{ textAlign: 'left', paddingLeft: '12px', minWidth: '150px' }}>ឈ្មោះ</th>
                       <th style={{ width: '50px' }}>ភេទ</th>
                       {subjects.map((sub) => (
@@ -288,11 +287,6 @@ export default function ScoresPage() {
                       return (
                         <tr key={student.id} className={isFail ? 'failed' : ''}>
                           <td style={{ color: 'var(--text-muted)' }}>{idx + 1}</td>
-                          <td>
-                            <span className="font-mono text-xs" style={{ color: '#93c5fd' }}>
-                              {student.examNumber}
-                            </span>
-                          </td>
                           <td style={{ textAlign: 'left', paddingLeft: '12px' }}>
                             <span className="font-medium text-sm">{student.name}</span>
                           </td>

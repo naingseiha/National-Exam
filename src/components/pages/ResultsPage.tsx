@@ -182,7 +182,6 @@ export default function ResultsPage() {
               <thead>
                 <tr>
                   <th>ល.រ</th>
-                  <th>លេខប្រឡង</th>
                   <th style={{ textAlign: 'left', paddingLeft: '16px' }}>ឈ្មោះ</th>
                   <th>ភេទ</th>
                   <th>បន្ទប់</th>
@@ -210,11 +209,6 @@ export default function ResultsPage() {
                       }}
                     >
                       <td style={{ color: 'var(--text-muted)', fontWeight: 500 }}>{idx + 1}</td>
-                      <td>
-                        <span className="font-mono text-xs" style={{ color: '#93c5fd' }}>
-                          {student.examNumber}
-                        </span>
-                      </td>
                       <td style={{ textAlign: 'left', paddingLeft: '16px' }}>
                         <span
                           className="font-semibold"

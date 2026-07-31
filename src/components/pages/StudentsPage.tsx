@@ -185,19 +185,6 @@ export default function StudentsPage() {
             </div>
             <div>
               <label className="block text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>
-                លេខប្រឡង
-              </label>
-              <input
-                type="text"
-                value={newStudent.examNumber}
-                onChange={(e) => setNewStudent({ ...newStudent, examNumber: e.target.value })}
-                className="w-full score-input"
-                style={{ width: '100%', textAlign: 'left' }}
-                placeholder="xxxxx"
-              />
-            </div>
-            <div>
-              <label className="block text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>
                 ភេទ
               </label>
               <select
@@ -360,7 +347,6 @@ export default function StudentsPage() {
               <thead>
                 <tr>
                   <th>ល.រ</th>
-                  <th>លេខប្រឡង</th>
                   <th style={{ textAlign: 'left', paddingLeft: '16px' }}>ឈ្មោះ</th>
                   <th>ភេទ</th>
                   <th>បន្ទប់</th>
@@ -372,11 +358,6 @@ export default function StudentsPage() {
                 {filtered.map((student, index) => (
                   <tr key={student.id} className={student.status === 'fail' ? 'failed' : ''}>
                     <td style={{ color: 'var(--text-muted)' }}>{index + 1}</td>
-                    <td>
-                      <span className="font-mono text-sm" style={{ color: '#93c5fd' }}>
-                        {student.examNumber || '-'}
-                      </span>
-                    </td>
                     <td style={{ textAlign: 'left', paddingLeft: '16px' }}>
                       <span className="font-medium text-white">{student.name}</span>
                     </td>
