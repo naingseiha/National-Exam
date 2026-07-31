@@ -206,9 +206,7 @@ export const useExamStore = create<ExamStore>()(
 
       // Computed getters
       getStudentsByRoom: (examType, room) => {
-        return get().students.filter(
-          (s) => s.examType === examType && s.room === room
-        );
+        return get().students.filter((s) => s.examType === examType && s.room === room);
       },
 
       getRooms: (examType) => {

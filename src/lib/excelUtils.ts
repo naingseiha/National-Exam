@@ -73,7 +73,6 @@ export async function parseExcelFile(
           // Determine room from sheet name
           const roomFromSheet = sheetName.replace(/[^0-9]/g, '').padStart(2, '0') || sheetName;
 
-          let studentIndex = 0;
           // Parse student rows
           for (let i = headerRowIndex + 1; i < jsonData.length; i++) {
             const row = jsonData[i];
@@ -86,16 +85,8 @@ export async function parseExcelFile(
               ? 'female'
               : 'male';
 
-            let room: string;
-            if (roomCol >= 0 && row[roomCol]) {
-              room = String(row[roomCol]).trim();
-            } else {
-              // Auto split into rooms of 27 if no explicit room column is provided
-              const roomNumber = Math.floor(studentIndex / 27) + 1;
-              room = roomNumber.toString().padStart(2, '0');
-            }
+            const room = roomCol >= 0 ? String(row[roomCol] || roomFromSheet).trim() : roomFromSheet;
 
-            studentIndex++;
             roomSet.add(room);
 
             students.push({

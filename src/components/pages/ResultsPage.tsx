@@ -45,11 +45,7 @@ export default function ResultsPage() {
           s.examNumber.includes(searchQuery)
       );
     }
-    return filtered.sort((a, b) => {
-      const numA = parseInt(a.examNumber.replace(/\D/g, '')) || 0;
-      const numB = parseInt(b.examNumber.replace(/\D/g, '')) || 0;
-      return numA - numB;
-    });
+    return filtered;
   }, [students, selectedExamType, activeRoom, statusFilter, searchQuery]);
 
   const stats = useMemo(() => {
