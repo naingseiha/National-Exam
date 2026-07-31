@@ -9,8 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        khmer: ["'Noto Sans Khmer'", "sans-serif"],
-        sans: ["'Noto Sans Khmer'", "'Inter'", "sans-serif"],
+        khmer: ["'Battambang'", "'Siemreap'", "'Noto Sans Khmer'", "sans-serif"],
+        sans: ["'Battambang'", "'Siemreap'", "'Noto Sans Khmer'", "'Inter'", "sans-serif"],
+        moul: ["'Moul'", "'Khmer OS Muol Light'", "serif"],
+        tacteing: ["'Tacteing'", "'Khmer OS Tacteing'", "serif"],
       },
       colors: {
         primary: {

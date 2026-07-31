@@ -39,7 +39,7 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
         <div className="print-header-center top-title">
           ព្រះរាជាណាចក្រកម្ពុជា<br/>
           ជាតិ សាសនា ព្រះមហាក្សត្រ<br/>
-          <span className="print-header-symbol">🙣🙧 🙣🙧 🙣🙧</span>
+          <span className="print-header-symbol">3</span>
         </div>
         
         <div className="print-header-row">
