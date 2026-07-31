@@ -72,6 +72,30 @@ export default function ScoresPage() {
     return () => window.removeEventListener('beforeunload', handler);
   }, [isDirty]);
 
+  // Intercept Next.js Link clicks and other navigation attempts
+  useEffect(() => {
+    const handleGlobalClick = (e: MouseEvent) => {
+      if (!isDirty) return;
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a');
+      // If clicking on a local link while having unsaved changes
+      if (anchor && anchor.href && anchor.origin === window.location.origin) {
+        if (!window.confirm('អ្នកមានទិន្នន័យមិនទាន់រក្សាទុក! តើអ្នកពិតជាចង់ចាកចេញមែនទេ? (ទិន្នន័យនឹងត្រូវបាត់បង់)')) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    };
+    // Use capture phase to intercept before React router handles it
+    document.addEventListener('click', handleGlobalClick, { capture: true });
+    return () => document.removeEventListener('click', handleGlobalClick, { capture: true });
+  }, [isDirty]);
+
+  const confirmDiscard = useCallback(() => {
+    if (!isDirty) return true;
+    return window.confirm('អ្នកមានទិន្នន័យមិនទាន់រក្សាទុក! តើអ្នកពិតជាចង់បន្តមែនទេ? (ទិន្នន័យនឹងត្រូវបាត់បង់)');
+  }, [isDirty]);
+
   const handleScoreChange = useCallback(
     (studentId: string, subjectId: string, value: string, maxScore: number) => {
       setLocalScores((prev) => ({
@@ -251,7 +275,11 @@ export default function ScoresPage() {
           return (
             <button
               key={type}
-              onClick={() => { setSelectedExamType(type); setSelectedRoom(null); }}
+              onClick={() => { 
+                if (!confirmDiscard()) return;
+                setSelectedExamType(type); 
+                setSelectedRoom(null); 
+              }}
               className="px-4 py-2 rounded-xl font-medium text-sm transition-all"
               style={{
                 background: selectedExamType === type ? c.bg : 'rgba(26,42,74,0.5)',
@@ -292,7 +320,10 @@ export default function ScoresPage() {
                 return (
                   <button
                     key={room.id}
-                    onClick={() => setSelectedRoom(room.name)}
+                    onClick={() => {
+                      if (!confirmDiscard()) return;
+                      setSelectedRoom(room.name);
+                    }}
                     className="flex-shrink-0 lg:w-full text-left px-4 py-3 rounded-xl transition-all"
                     style={{
                       background: isActive ? colors.bg : 'rgba(26,42,74,0.4)',
