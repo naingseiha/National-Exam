@@ -27,28 +27,48 @@ export default function ExportPage() {
 
   const handleExportRoomExcel = async (room: string) => {
     setExporting(`excel_${room}`);
-    const roomStudents = examStudents.filter((s) => s.room === room);
-    exportToExcel(roomStudents, selectedExamType, room, schoolInfo);
-    setExporting(null);
+    try {
+      const roomStudents = examStudents.filter((s) => s.room === room);
+      exportToExcel(roomStudents, selectedExamType, room, schoolInfo);
+    } catch (e) {
+      console.error('Error exporting room Excel:', e);
+    } finally {
+      setExporting(null);
+    }
   };
 
   const handleExportAllExcel = async () => {
     setExporting('excel_all');
-    exportAllToExcel(examStudents, selectedExamType, schoolInfo);
-    setExporting(null);
+    try {
+      exportAllToExcel(examStudents, selectedExamType, schoolInfo);
+    } catch (e) {
+      console.error('Error exporting all Excel:', e);
+    } finally {
+      setExporting(null);
+    }
   };
 
   const handleExportRoomPDF = async (room: string) => {
     setExporting(`pdf_${room}`);
-    const roomStudents = examStudents.filter((s) => s.room === room);
-    await exportToPDF(roomStudents, selectedExamType, room, schoolInfo);
-    setExporting(null);
+    try {
+      const roomStudents = examStudents.filter((s) => s.room === room);
+      await exportToPDF(roomStudents, selectedExamType, room, schoolInfo);
+    } catch (e) {
+      console.error('Error exporting room PDF:', e);
+    } finally {
+      setExporting(null);
+    }
   };
 
   const handleExportAllPDF = async () => {
     setExporting('pdf_all');
-    await exportAllToPDF(examStudents, selectedExamType, schoolInfo);
-    setExporting(null);
+    try {
+      await exportAllToPDF(examStudents, selectedExamType, schoolInfo);
+    } catch (e) {
+      console.error('Error exporting all PDF:', e);
+    } finally {
+      setExporting(null);
+    }
   };
 
   return (

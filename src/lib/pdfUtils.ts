@@ -55,7 +55,8 @@ export async function exportToPDF(
 
       const subjectCells = subjects
         .map((sub) => {
-          const score = student.scores[sub.id];
+          const scores = student.scores || {};
+          const score = scores[sub.id];
           const grade = getSubjectGradeLetter(score, sub.maxScore);
           return `
             <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold;">
