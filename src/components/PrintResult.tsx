@@ -143,6 +143,35 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
           })}
         </tbody>
       </table>
+
+      {pageIdx === pages.length - 1 && (
+        <div className="print-footer" style={{ marginTop: '20px', fontSize: '11px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div>
+            បានបញ្ឈប់បញ្ជីត្រឹមចំនួន <b>{totalStr}</b>នាក់ ក្នុងនោះស្រីចំនួន <b>{femaleStr}</b>នាក់
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '5px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
+                <span style={{ minWidth: '130px' }}>បូកស្រង់ដោយ</span>
+                <span style={{ borderBottom: '1.5px dotted black', width: '150px', height: '14px' }}></span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
+                <span style={{ minWidth: '130px' }}>ចុះចំណាត់ថ្នាក់ដោយ</span>
+                <span style={{ borderBottom: '1.5px dotted black', width: '150px', height: '14px' }}></span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
+                <span style={{ minWidth: '130px' }}>ត្រួតពិនិត្យដោយ</span>
+                <span style={{ borderBottom: '1.5px dotted black', width: '150px', height: '14px' }}></span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, textAlign: 'center', lineHeight: '1.6' }}>
+              <div>ថ្ងៃព្រហស្បតិ៍ ១រោច ខែទុតិយាសាឍ ឆ្នាំរោង ឆស័ក ព.ស ២៥៦៨</div>
+              <div>{schoolInfo.name || 'វិទ្យាល័យ'} ថ្ងៃទី៣០ ខែកក្កដា ឆ្នាំ២០២៦</div>
+              <div style={{ fontFamily: "'Moul', 'Khmer OS Muol Light', serif", marginTop: '10px' }}>ប្រធានមណ្ឌល</div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   ));
 
