@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useExamStore } from '@/store/examStore';
+import { pushStudentsToFirebase, isFirebaseConfigured } from '@/lib/firebase';
 import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
 import { getStudentSeqNo } from '@/lib/calculations';
 import { ExamType } from '@/types';
-import { ClipboardList, Save, CheckCircle } from 'lucide-react';
+import { ClipboardList, Save, CheckCircle, AlertCircle } from 'lucide-react';
 
 const EXAM_TYPES: ExamType[] = ['grade9', 'grade12_science', 'grade12_social'];
 
@@ -25,6 +26,7 @@ export default function ScoresPage() {
 
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [localScores, setLocalScores] = useState<Record<string, Record<string, string>>>({});
   const [errors, setErrors] = useState<Record<string, Record<string, string>>>({});
 
@@ -79,7 +81,9 @@ export default function ScoresPage() {
 
   const saveAllScores = async () => {
     setSaving(true);
-    // Check for errors
+    setSaveError(null);
+
+    // Check for validation errors
     let hasError = false;
     Object.values(errors).forEach((studentErrors) => {
       Object.values(studentErrors).forEach((err) => {
@@ -87,22 +91,41 @@ export default function ScoresPage() {
       });
     });
 
-    if (!hasError) {
-      const batchUpdates: Record<string, Record<string, number | null>> = {};
-      roomStudents.forEach((student) => {
-        batchUpdates[student.id] = {};
-        subjects.forEach((sub) => {
-          const val = localScores[student.id]?.[sub.id];
-          const parsed = val === '' || val === undefined ? null : parseFloat(val);
-          batchUpdates[student.id][sub.id] = isNaN(parsed as number) ? null : parsed;
-        });
-      });
-      
-      saveScoresBatch(batchUpdates);
-      recalculateAll(); // This will recalculate ranks and push to Firebase once
+    if (hasError) {
+      setSaving(false);
+      setSaveError('មានពិន្ទុមិនត្រឹមត្រូវ — សូមពិនិត្យម្ដងទៀត');
+      return;
     }
 
-    await new Promise((r) => setTimeout(r, 300));
+    // Build batch update
+    const batchUpdates: Record<string, Record<string, number | null>> = {};
+    roomStudents.forEach((student) => {
+      batchUpdates[student.id] = {};
+      subjects.forEach((sub) => {
+        const val = localScores[student.id]?.[sub.id];
+        const parsed = val === '' || val === undefined ? null : parseFloat(val);
+        batchUpdates[student.id][sub.id] = isNaN(parsed as number) ? null : parsed;
+      });
+    });
+
+    // Apply to local store first (instant UI update)
+    saveScoresBatch(batchUpdates);
+    recalculateAll(); // Updates ranks in local store
+
+    // Now push the final state to Firebase and wait for confirmation
+    if (isFirebaseConfigured()) {
+      // Get latest students from store after recalculate
+      const latestStudents = useExamStore.getState().students;
+      const success = await pushStudentsToFirebase(latestStudents);
+      if (!success) {
+        setSaveError('ជោគជ័យ (local) — Firebase sync failed! ពិន្ទុរក្សានៅ localStorage។');
+        setSaving(false);
+        setSavedMsg(true);
+        setTimeout(() => { setSavedMsg(false); setSaveError(null); }, 5000);
+        return;
+      }
+    }
+
     setSaving(false);
     setSavedMsg(true);
     setTimeout(() => setSavedMsg(false), 3000);
@@ -155,6 +178,16 @@ export default function ScoresPage() {
           <p className="text-white font-medium">
             រក្សាទុកបានជោគជ័យ! ពិន្ទុទាំងអស់ត្រូវបានគណនាឡើងវិញ។
           </p>
+        </div>
+      )}
+
+      {saveError && (
+        <div
+          className="flex items-center gap-3 p-4 rounded-xl mb-6"
+          style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)' }}
+        >
+          <AlertCircle size={18} style={{ color: '#ef4444' }} />
+          <p className="text-white font-medium text-sm">{saveError}</p>
         </div>
       )}
 

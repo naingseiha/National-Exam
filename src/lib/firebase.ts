@@ -41,23 +41,27 @@ const DB_PATHS = {
 };
 
 /**
- * Save all students to Firebase Realtime Database
+ * Save all students to Firebase Realtime Database.
+ * Returns true on success, false on failure.
  */
-export async function pushStudentsToFirebase(students: Student[]) {
+export async function pushStudentsToFirebase(students: Student[]): Promise<boolean> {
   const db = getFirebaseDb();
-  if (!db) return false;
+  if (!db) {
+    console.warn('[Firebase] Not configured — skipping push');
+    return false;
+  }
 
   try {
     const studentsRef = ref(db, DB_PATHS.STUDENTS);
-    // Store as array or dictionary
     const dataMap: Record<string, Student> = {};
     students.forEach((s) => {
       dataMap[s.id] = s;
     });
     await set(studentsRef, dataMap);
+    console.log('[Firebase] Pushed', students.length, 'students successfully');
     return true;
   } catch (error) {
-    console.error('Error pushing students to Firebase:', error);
+    console.error('[Firebase] Error pushing students:', error);
     return false;
   }
 }
@@ -65,7 +69,7 @@ export async function pushStudentsToFirebase(students: Student[]) {
 /**
  * Save school info to Firebase Realtime Database
  */
-export async function pushSchoolInfoToFirebase(info: SchoolInfo) {
+export async function pushSchoolInfoToFirebase(info: SchoolInfo): Promise<boolean> {
   const db = getFirebaseDb();
   if (!db) return false;
 
@@ -74,7 +78,7 @@ export async function pushSchoolInfoToFirebase(info: SchoolInfo) {
     await set(schoolRef, info);
     return true;
   } catch (error) {
-    console.error('Error pushing school info to Firebase:', error);
+    console.error('[Firebase] Error pushing school info:', error);
     return false;
   }
 }
@@ -82,7 +86,7 @@ export async function pushSchoolInfoToFirebase(info: SchoolInfo) {
 /**
  * Save exam configs to Firebase Realtime Database
  */
-export async function pushExamConfigsToFirebase(configs: Record<ExamType, ExamConfig>) {
+export async function pushExamConfigsToFirebase(configs: Record<ExamType, ExamConfig>): Promise<boolean> {
   const db = getFirebaseDb();
   if (!db) return false;
 
@@ -91,9 +95,49 @@ export async function pushExamConfigsToFirebase(configs: Record<ExamType, ExamCo
     await set(configRef, configs);
     return true;
   } catch (error) {
-    console.error('Error pushing exam configs to Firebase:', error);
+    console.error('[Firebase] Error pushing exam configs:', error);
     return false;
   }
+}
+
+/**
+ * Fetch students from Firebase ONCE (no real-time listener).
+ * Returns the students array or null if Firebase is not configured / has no data.
+ */
+export function fetchStudentsOnce(
+  onResult: (students: Student[] | null) => void
+): () => void {
+  const db = getFirebaseDb();
+  if (!db) {
+    onResult(null);
+    return () => {};
+  }
+
+  const studentsRef = ref(db, DB_PATHS.STUDENTS);
+  const unsub = onValue(
+    studentsRef,
+    (snapshot) => {
+      if (!snapshot.exists()) {
+        onResult(null);
+        return;
+      }
+      const val = snapshot.val();
+      if (!val) {
+        onResult(null);
+        return;
+      }
+      const list: Student[] = Array.isArray(val)
+        ? val.filter(Boolean)
+        : Object.values(val);
+      onResult(list.length > 0 ? list : null);
+    },
+    (error) => {
+      console.error('[Firebase] fetchStudentsOnce error:', error);
+      onResult(null);
+    }
+  );
+
+  return () => off(studentsRef, 'value', unsub);
 }
 
 /**
@@ -118,7 +162,9 @@ export function listenToFirebaseSync(callbacks: {
       const list: Student[] = Array.isArray(val)
         ? val.filter(Boolean)
         : Object.values(val);
-      callbacks.onStudentsChange(list);
+      if (list.length > 0) {
+        callbacks.onStudentsChange(list);
+      }
     }
   });
 
