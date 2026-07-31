@@ -5,7 +5,8 @@ import { useExamStore } from '@/store/examStore';
 import { calculateStats, getStudentSeqNo } from '@/lib/calculations';
 import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
 import { ExamType } from '@/types';
-import { FileText, Search } from 'lucide-react';
+import { FileText, Search, Printer } from 'lucide-react';
+import PrintResult from '../PrintResult';
 
 const EXAM_TYPES: ExamType[] = ['grade9', 'grade12_science', 'grade12_social'];
 
@@ -20,10 +21,12 @@ export default function ResultsPage() {
     setSelectedRoom,
     getRooms,
     examConfigs,
+    schoolInfo,
   } = useExamStore();
 
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
 
   const rooms = getRooms(selectedExamType);
   const activeRoom = selectedRoom && rooms.find((r) => r.name === selectedRoom)
@@ -60,18 +63,38 @@ export default function ResultsPage() {
   }, [students, selectedExamType, activeRoom]);
 
   return (
-    <div className="fade-in">
-      {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
-            បញ្ជី<span className="gradient-text">លទ្ធផល</span>
-          </h1>
-          <p style={{ color: 'var(--text-secondary)' }}>
-            លទ្ធផលប្រឡង — ខ្សែក្រហមសម្រាប់សិស្សធ្លាក់
-          </p>
+    <>
+      <PrintResult
+        students={displayStudents}
+        allStudents={students}
+        config={config}
+        schoolInfo={schoolInfo}
+        room={activeRoom !== 'all' ? activeRoom : undefined}
+        isPreview={showPreview}
+        onClosePreview={() => setShowPreview(false)}
+      />
+      
+      <div className="fade-in no-print">
+        {/* Header */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              បញ្ជី<span className="gradient-text">លទ្ធផល</span>
+            </h1>
+            <p style={{ color: 'var(--text-secondary)' }}>
+              លទ្ធផលប្រឡង — ខ្សែក្រហមសម្រាប់សិស្សធ្លាក់
+            </p>
+          </div>
+          
+          <button
+            onClick={() => setShowPreview(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all hover:bg-blue-600"
+            style={{ background: 'var(--accent-blue)', color: 'white' }}
+          >
+            <Printer size={18} />
+            បង្កើតលទ្ធផល
+          </button>
         </div>
-      </div>
 
       {/* Exam Type */}
       <div className="flex gap-3 mb-6 flex-wrap">
@@ -298,6 +321,7 @@ export default function ResultsPage() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

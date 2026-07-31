@@ -231,12 +231,225 @@ body {
 }
 
 /* Print styles */
+/* Print and Preview styles */
+.print-only-hidden {
+  display: none;
+}
+
+/* Screen Preview Container */
+.print-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #525659;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.print-preview-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #323639;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 1010;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.print-preview-content {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.print-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  box-sizing: border-box;
+  font-family: 'Khmer OS Battambang', 'Noto Sans Khmer', sans-serif;
+  color: black;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  padding: 1cm; /* Simulate print margins */
+  margin: 0 auto;
+}
+
+/* Header styles */
+.print-header {
+  margin-bottom: 20px;
+}
+
+.print-header-center {
+  text-align: center;
+}
+
+.print-header-center.top-title {
+  font-family: 'Khmer OS Muol Light', 'Noto Sans Khmer', serif;
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.print-header-symbol {
+  font-size: 12px;
+}
+
+.print-header-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.print-header-left {
+  text-align: left;
+  font-family: 'Khmer OS Muol Light', 'Noto Sans Khmer', serif;
+}
+
+.print-header-right {
+  text-align: right;
+  font-weight: bold;
+}
+
+.print-header-center.main-title {
+  font-family: 'Khmer OS Muol Light', 'Noto Sans Khmer', serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Table styles */
+.print-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  color: black;
+}
+
+.print-table th, .print-table td {
+  border: 1px solid black;
+  padding: 4px;
+  vertical-align: middle;
+}
+
+.print-table th {
+  font-family: 'Khmer OS Muol Light', 'Noto Sans Khmer', serif;
+  font-weight: normal;
+  text-align: center;
+  background-color: transparent;
+}
+
+.print-table tr.bg-gray th {
+  background-color: #e5e7eb !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.col-no { width: 30px; }
+.col-name { width: 140px; }
+.col-gender { width: 35px; }
+.col-room { width: 45px; }
+
+/* Red strikethrough for failed students */
+.strikethrough-red {
+  position: relative;
+  display: inline-block;
+}
+
+.strikethrough-red::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1.5px;
+  background-color: red !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Custom cell styling */
+.print-table td.name-cell {
+  text-align: left;
+  padding-left: 6px;
+}
+
+.print-table td.text-center {
+  text-align: center;
+}
+
+.print-table td.font-bold {
+  font-weight: bold;
+}
+
+/* Ensure text is black even in dark mode initially */
+.print-preview-content * {
+  color: black;
+}
+
+/* Fix failed text color */
+.failed-row td {
+  color: black !important;
+}
+
 @media print {
   body {
-    background: white;
-    color: black;
+    background: white !important;
   }
-  .no-print {
+  
+  /* Hide all regular UI elements and toolbar */
+  .no-print,
+  .print-preview-toolbar,
+  .sidebar,
+  .navbar,
+  nav,
+  header {
     display: none !important;
+  }
+
+  /* Reset overlay for actual print */
+  .print-preview-overlay {
+    position: static;
+    background: transparent;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .print-preview-content {
+    margin: 0;
+    gap: 0;
+    display: block;
+  }
+
+  .print-page {
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+  
+  .print-page:last-child {
+    page-break-after: auto;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 1cm;
   }
 }

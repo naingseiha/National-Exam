@@ -19,6 +19,7 @@ export default function ScoresPage() {
     getRooms,
     getStudentsByRoom,
     updateScore,
+    saveScoresBatch,
     recalculateAll,
     examConfigs,
   } = useExamStore();
@@ -88,14 +89,18 @@ export default function ScoresPage() {
     });
 
     if (!hasError) {
+      const batchUpdates: Record<string, Record<string, number | null>> = {};
       roomStudents.forEach((student) => {
+        batchUpdates[student.id] = {};
         subjects.forEach((sub) => {
           const val = localScores[student.id]?.[sub.id];
           const parsed = val === '' || val === undefined ? null : parseFloat(val);
-          updateScore(student.id, sub.id, isNaN(parsed as number) ? null : parsed);
+          batchUpdates[student.id][sub.id] = isNaN(parsed as number) ? null : parsed;
         });
       });
-      recalculateAll();
+      
+      saveScoresBatch(batchUpdates);
+      recalculateAll(); // This will recalculate ranks and push to Firebase once
     }
 
     await new Promise((r) => setTimeout(r, 300));

@@ -28,6 +28,7 @@ interface ExamStore {
   // Score entry
   updateScore: (studentId: string, subjectId: string, score: number | null) => void;
   updateAllScores: (studentId: string, scores: Record<string, number | null>) => void;
+  saveScoresBatch: (updates: Record<string, Record<string, number | null>>) => void;
   recalculateAll: () => void;
 
   // Exam configs (customizable)
@@ -162,6 +163,19 @@ export const useExamStore = create<ExamStore>()(
         });
         set({ students: nextStudents });
         pushStudentsToFirebase(nextStudents);
+      },
+
+      saveScoresBatch: (updates: Record<string, Record<string, number | null>>) => {
+        const nextStudents = get().students.map((s) => {
+          if (updates[s.id]) {
+            const updated = { ...s, scores: { ...s.scores, ...updates[s.id] } };
+            return calculateStudentResult(updated);
+          }
+          return s;
+        });
+        set({ students: nextStudents });
+        // Don't push to firebase yet, wait for recalculateAll to do it, 
+        // or let the caller call recalculateAll() which pushes.
       },
 
       recalculateAll: () => {
