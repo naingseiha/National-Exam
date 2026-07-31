@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useExamStore } from '@/store/examStore';
 import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
+import { getStudentSeqNo } from '@/lib/calculations';
 import { ExamType } from '@/types';
 import { ClipboardList, Save, CheckCircle } from 'lucide-react';
 
@@ -282,11 +283,11 @@ export default function ScoresPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {roomStudents.map((student, idx) => {
+                    {roomStudents.map((student) => {
                       const isFail = student.status === 'fail';
                       return (
                         <tr key={student.id} className={isFail ? 'failed' : ''}>
-                          <td style={{ color: 'var(--text-muted)' }}>{idx + 1}</td>
+                          <td style={{ color: 'var(--text-muted)' }}>{getStudentSeqNo(student, students)}</td>
                           <td style={{ textAlign: 'left', paddingLeft: '12px' }}>
                             <span className="font-medium text-sm">{student.name}</span>
                           </td>

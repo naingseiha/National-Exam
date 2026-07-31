@@ -2,7 +2,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Student, ExamType, SchoolInfo } from '@/types';
 import { EXAM_CONFIGS } from '@/config/examConfig';
-import { getSubjectGradeLetter, getOverallGradeLetter } from '@/lib/calculations';
+import { getSubjectGradeLetter, getOverallGradeLetter, getStudentSeqNo } from '@/lib/calculations';
 
 /**
  * Generate Ministry MoEYS Official PDF report matching the user's sample format exactly
@@ -48,10 +48,11 @@ export async function exportToPDF(
 
   // Generate rows HTML
   const rowsHtml = students
-    .map((student, idx) => {
+    .map((student) => {
       const isFail = student.status === 'fail';
       const genderSymbol = student.gender === 'female' ? 'ស' : 'ប';
       const overallGrade = getOverallGradeLetter(student);
+      const seqNo = getStudentSeqNo(student, students);
 
       const subjectCells = subjects
         .map((sub) => {
@@ -77,9 +78,9 @@ export async function exportToPDF(
             ${
               isFail
                 ? `<span style="border: 1.5px solid #d32f2f; border-radius: 50%; padding: 1px 4px; color: #d32f2f; font-weight: bold; display: inline-block;">${
-                    idx + 1
+                    seqNo
                   }</span>`
-                : `${idx + 1}`
+                : `${seqNo}`
             }
           </td>
           <td style="border: 1px solid #000; text-align: left; padding: 4px 6px; font-size: 11px; font-weight: bold; white-space: nowrap; ${

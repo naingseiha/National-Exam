@@ -143,6 +143,25 @@ export function sortStudentsByExamNumber(students: Student[]): Student[] {
 }
 
 /**
+ * Calculate continuous student sequence number (ល.រ) within their exam type
+ */
+export function getStudentSeqNo(student: Student, allStudents?: Student[]): number {
+  if (allStudents && allStudents.length > 0) {
+    const sameType = allStudents
+      .filter((s) => s.examType === student.examType)
+      .sort((a, b) => {
+        const numA = parseInt((a.examNumber || '').replace(/\D/g, '')) || 0;
+        const numB = parseInt((b.examNumber || '').replace(/\D/g, '')) || 0;
+        return numA - numB;
+      });
+    const idx = sameType.findIndex((s) => s.id === student.id);
+    if (idx !== -1) return idx + 1;
+  }
+  const parsed = parseInt((student.examNumber || '').replace(/\D/g, '')) % 1000;
+  return isNaN(parsed) || parsed === 0 ? 1 : parsed;
+}
+
+/**
  * Format score for display
  */
 export function formatScore(score: number | null | undefined): string {

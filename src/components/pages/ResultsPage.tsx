@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { useExamStore } from '@/store/examStore';
-import { calculateStats } from '@/lib/calculations';
+import { calculateStats, getStudentSeqNo } from '@/lib/calculations';
 import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
 import { ExamType } from '@/types';
 import { FileText, Search } from 'lucide-react';
@@ -202,7 +202,7 @@ export default function ResultsPage() {
                 </tr>
               </thead>
               <tbody>
-                {displayStudents.map((student, idx) => {
+                {displayStudents.map((student) => {
                   const isFail = student.status === 'fail';
                   return (
                     <tr
@@ -212,7 +212,7 @@ export default function ResultsPage() {
                         background: isFail ? 'rgba(239,68,68,0.04)' : undefined,
                       }}
                     >
-                      <td style={{ color: 'var(--text-muted)', fontWeight: 500 }}>{idx + 1}</td>
+                      <td style={{ color: 'var(--text-muted)', fontWeight: 500 }}>{getStudentSeqNo(student, students)}</td>
                       <td style={{ textAlign: 'left', paddingLeft: '16px' }}>
                         <span
                           className="font-semibold"

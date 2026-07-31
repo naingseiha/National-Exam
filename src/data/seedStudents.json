@@ -544,7 +544,7 @@
     "examNumber": "02001",
     "name": "កុច កញ្ញា",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -554,7 +554,7 @@
     "examNumber": "02002",
     "name": "កូវ សាលីណា",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -564,7 +564,7 @@
     "examNumber": "02003",
     "name": "កែវ ស្រីនិច",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -574,7 +574,7 @@
     "examNumber": "02004",
     "name": "ក្រែល លីណា",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -584,7 +584,7 @@
     "examNumber": "02005",
     "name": "ខង ដួងណារក្ស",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -594,7 +594,7 @@
     "examNumber": "02006",
     "name": "ខា សុម៉ី",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -604,7 +604,7 @@
     "examNumber": "02007",
     "name": "ខុម វិច្ឆិកា",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -614,7 +614,7 @@
     "examNumber": "02008",
     "name": "គង់ រស្មី",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -624,7 +624,7 @@
     "examNumber": "02009",
     "name": "គង់ណែប កាន",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -634,7 +634,7 @@
     "examNumber": "02010",
     "name": "គ្រី ធារី",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -644,7 +644,7 @@
     "examNumber": "02011",
     "name": "គ្លេទូស អូវែន",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -654,7 +654,7 @@
     "examNumber": "02012",
     "name": "ឃុន សុឃីម",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -664,7 +664,7 @@
     "examNumber": "02013",
     "name": "ង៉ា ណាចាន់",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -674,7 +674,7 @@
     "examNumber": "02014",
     "name": "ង៉ិក សម្បត្តិ",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -684,7 +684,7 @@
     "examNumber": "02015",
     "name": "ង៉ិក សារី",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -694,7 +694,7 @@
     "examNumber": "02016",
     "name": "ងឿម សុង៉ា",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -704,7 +704,7 @@
     "examNumber": "02017",
     "name": "ចក់ សុលីណា",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -714,7 +714,7 @@
     "examNumber": "02018",
     "name": "ចាន់ សុវណ្ណ",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -724,7 +724,7 @@
     "examNumber": "02019",
     "name": "ចិត ចន្រ្តា",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -734,7 +734,7 @@
     "examNumber": "02020",
     "name": "ចិន នី",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -744,7 +744,7 @@
     "examNumber": "02021",
     "name": "ចេក សាចែម",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -754,7 +754,7 @@
     "examNumber": "02022",
     "name": "ចំណាន លក្ខណា",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -764,7 +764,7 @@
     "examNumber": "02023",
     "name": "ឆង ភារិទ្ធ",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -774,7 +774,7 @@
     "examNumber": "02024",
     "name": "ឆាត់ យ៉ារួន",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -784,7 +784,7 @@
     "examNumber": "02025",
     "name": "ឆាំ សុធី",
     "gender": "male",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -794,7 +794,7 @@
     "examNumber": "02026",
     "name": "ឆើញ កុម្ភៈ",
     "gender": "female",
-    "room": "01",
+    "room": "03",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -804,7 +804,7 @@
     "examNumber": "02027",
     "name": "ឆែត ឆៃ",
     "gender": "male",
-    "room": "01",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -814,7 +814,7 @@
     "examNumber": "02028",
     "name": "ជន់ ស្រីពៅ",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -824,7 +824,7 @@
     "examNumber": "02029",
     "name": "ជា មិនា",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -834,7 +834,7 @@
     "examNumber": "02030",
     "name": "ជិន សុភារៈ",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -844,7 +844,7 @@
     "examNumber": "02031",
     "name": "ជី រដ្ឋា",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -854,7 +854,7 @@
     "examNumber": "02032",
     "name": "ជីន សុភ័ក្រ្តា",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -864,7 +864,7 @@
     "examNumber": "02033",
     "name": "ជុំ ស្រីនាថ",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -874,7 +874,7 @@
     "examNumber": "02034",
     "name": "ជឿង សម្ភរ",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -884,7 +884,7 @@
     "examNumber": "02035",
     "name": "ជឿន រច្ចណា",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -894,7 +894,7 @@
     "examNumber": "02036",
     "name": "ឈឿង ស្រីពៅ",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -904,7 +904,7 @@
     "examNumber": "02037",
     "name": "ឈៀក ឈិន",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -914,7 +914,7 @@
     "examNumber": "02038",
     "name": "ញ៉ាវ ច័ន្តនា",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -924,7 +924,7 @@
     "examNumber": "02039",
     "name": "ញួន លីណា",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -934,7 +934,7 @@
     "examNumber": "02040",
     "name": "ដា រ័តនា",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -944,7 +944,7 @@
     "examNumber": "02041",
     "name": "ដាំង ស៊ីណែត",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -954,7 +954,7 @@
     "examNumber": "02042",
     "name": "ណាង នីតា",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -964,7 +964,7 @@
     "examNumber": "02043",
     "name": "ណាត វ៉ាយុ",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -974,7 +974,7 @@
     "examNumber": "02044",
     "name": "ណាន់ សុផានូ",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -984,7 +984,7 @@
     "examNumber": "02045",
     "name": "ណុន នីកា",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -994,7 +994,7 @@
     "examNumber": "02046",
     "name": "ណៃ ចំរើន",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1004,7 +1004,7 @@
     "examNumber": "02047",
     "name": "តយ ទីណា",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1014,7 +1014,7 @@
     "examNumber": "02048",
     "name": "តាំ វីន",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1024,7 +1024,7 @@
     "examNumber": "02049",
     "name": "តឿ ឆេងអុី",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1034,7 +1034,7 @@
     "examNumber": "02050",
     "name": "តៃ វិទូ",
     "gender": "male",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1044,7 +1044,7 @@
     "examNumber": "02051",
     "name": "ថន ធាវី",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1054,7 +1054,7 @@
     "examNumber": "02052",
     "name": "ថន សុផាឌី",
     "gender": "female",
-    "room": "02",
+    "room": "04",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1064,7 +1064,7 @@
     "examNumber": "03053",
     "name": "ថន​ ភក្រ្តា",
     "gender": "male",
-    "room": "02",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1074,7 +1074,7 @@
     "examNumber": "03054",
     "name": "ថរ ថៃ",
     "gender": "male",
-    "room": "02",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1084,7 +1084,7 @@
     "examNumber": "03055",
     "name": "ថា តុលា",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1094,7 +1094,7 @@
     "examNumber": "03056",
     "name": "ថាន ប៊ុនហុង",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1104,7 +1104,7 @@
     "examNumber": "03057",
     "name": "ថាន រស្មី",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1114,7 +1114,7 @@
     "examNumber": "03058",
     "name": "ថាន រិទ្ធិ",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1124,7 +1124,7 @@
     "examNumber": "03059",
     "name": "ថាំង ណាត់",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1134,7 +1134,7 @@
     "examNumber": "03060",
     "name": "ថី ម៉ាឡា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1144,7 +1144,7 @@
     "examNumber": "03061",
     "name": "ថុល សុវណ្ណតារា",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1154,7 +1154,7 @@
     "examNumber": "03062",
     "name": "ថែ ចាន់ធី",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1164,7 +1164,7 @@
     "examNumber": "03063",
     "name": "ទត សុខសាន្ត",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1174,7 +1174,7 @@
     "examNumber": "03064",
     "name": "ទាង មល្លិកា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1184,7 +1184,7 @@
     "examNumber": "03065",
     "name": "ទីង បាន់",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1194,7 +1194,7 @@
     "examNumber": "03066",
     "name": "ទុយ សូដា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1204,7 +1204,7 @@
     "examNumber": "03067",
     "name": "ទៀង ប៊ុនតាន",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1214,7 +1214,7 @@
     "examNumber": "03068",
     "name": "ទេស ទិត្យ",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1224,7 +1224,7 @@
     "examNumber": "03069",
     "name": "ធា ស៊ីឃីត",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1234,7 +1234,7 @@
     "examNumber": "03070",
     "name": "ធាន សុថា",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1244,7 +1244,7 @@
     "examNumber": "03071",
     "name": "ធួន រ៉ាឌីចាន់លីដា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1254,7 +1254,7 @@
     "examNumber": "03072",
     "name": "ធឿន ដារីកា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1264,7 +1264,7 @@
     "examNumber": "03073",
     "name": "ធឿន សុធា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1274,7 +1274,7 @@
     "examNumber": "03074",
     "name": "នាង វណ្ណណាន់",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1284,7 +1284,7 @@
     "examNumber": "03075",
     "name": "និន សុដាវណ្ណ",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1294,7 +1294,7 @@
     "examNumber": "03076",
     "name": "នី កន្និកា",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1304,7 +1304,7 @@
     "examNumber": "03077",
     "name": "នី ប៉ាច",
     "gender": "male",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1314,7 +1314,7 @@
     "examNumber": "03078",
     "name": "នីតា វត្តី",
     "gender": "female",
-    "room": "03",
+    "room": "05",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1324,7 +1324,7 @@
     "examNumber": "03079",
     "name": "នឿម ស្រីនិច",
     "gender": "female",
-    "room": "03",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1334,7 +1334,7 @@
     "examNumber": "03080",
     "name": "នេត្រ សុវណ្ណ",
     "gender": "male",
-    "room": "03",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1344,7 +1344,7 @@
     "examNumber": "03081",
     "name": "ប៉ែន ស៊ីនន់",
     "gender": "female",
-    "room": "03",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1354,7 +1354,7 @@
     "examNumber": "03082",
     "name": "ប៊ុនធឿន ស្រីសួង",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1364,7 +1364,7 @@
     "examNumber": "03083",
     "name": "បាន វាស្នា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1374,7 +1374,7 @@
     "examNumber": "03084",
     "name": "បួយ ម៉ានិច",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1384,7 +1384,7 @@
     "examNumber": "03085",
     "name": "ប្រាក់ លីណា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1394,7 +1394,7 @@
     "examNumber": "03086",
     "name": "ប្រាក់ ស្រីពេជ្រ",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1404,7 +1404,7 @@
     "examNumber": "03087",
     "name": "ប្រុស ភារុន",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1414,7 +1414,7 @@
     "examNumber": "03088",
     "name": "ប្រុស មេសា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1424,7 +1424,7 @@
     "examNumber": "03089",
     "name": "ផន សុបញ្ញា",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1434,7 +1434,7 @@
     "examNumber": "03090",
     "name": "ផល សុខគន្ធា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1444,7 +1444,7 @@
     "examNumber": "03091",
     "name": "ផាត់ ផាណែត",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1454,7 +1454,7 @@
     "examNumber": "03092",
     "name": "ផុន ច័ន្ទសុភា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1464,7 +1464,7 @@
     "examNumber": "03093",
     "name": "ផុន សេង",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1474,7 +1474,7 @@
     "examNumber": "03094",
     "name": "ផើង សិលា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1484,7 +1484,7 @@
     "examNumber": "03095",
     "name": "ផៃ​ សុផានី",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1494,7 +1494,7 @@
     "examNumber": "03096",
     "name": "ផ្លង់ ​សុខសាវិសាល",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1504,7 +1504,7 @@
     "examNumber": "03097",
     "name": "ផ្លង់់ ស្រីនិច្ច",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1514,7 +1514,7 @@
     "examNumber": "03098",
     "name": "ពន់ ពីន",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1524,7 +1524,7 @@
     "examNumber": "03099",
     "name": "ពរ វ៉ាន់ដា",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1534,7 +1534,7 @@
     "examNumber": "03100",
     "name": "ពិ ម៉ាក់",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1544,7 +1544,7 @@
     "examNumber": "03101",
     "name": "ពិន លីណាឃីម",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1554,7 +1554,7 @@
     "examNumber": "03102",
     "name": "ពុយ ស៊ាវម៉ី",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1564,7 +1564,7 @@
     "examNumber": "03103",
     "name": "ពូក ម៉ុច",
     "gender": "male",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1574,7 +1574,7 @@
     "examNumber": "03104",
     "name": "ពូល និតតា",
     "gender": "female",
-    "room": "04",
+    "room": "06",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1584,7 +1584,7 @@
     "examNumber": "04105",
     "name": "ពៅ ណារ៉ា",
     "gender": "male",
-    "room": "04",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1594,7 +1594,7 @@
     "examNumber": "04106",
     "name": "ពៅ សុភ័ក",
     "gender": "male",
-    "room": "04",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1604,7 +1604,7 @@
     "examNumber": "04107",
     "name": "ព្រួន ស្មាក់",
     "gender": "male",
-    "room": "04",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1614,7 +1614,7 @@
     "examNumber": "04108",
     "name": "ព្រឿង ព្រុយនេ",
     "gender": "male",
-    "room": "04",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1624,7 +1624,7 @@
     "examNumber": "04109",
     "name": "ព្រឿន លក្ខណា",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1634,7 +1634,7 @@
     "examNumber": "04110",
     "name": "ព្រេម លាប",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1644,7 +1644,7 @@
     "examNumber": "04111",
     "name": "ភក្តី លក្ខិណាឧត្តម",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1654,7 +1654,7 @@
     "examNumber": "04112",
     "name": "ភាក់ ធារ៉ា",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1664,7 +1664,7 @@
     "examNumber": "04113",
     "name": "ភាព ស្រីលាន",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1674,7 +1674,7 @@
     "examNumber": "04114",
     "name": "ភី សុភក្ត្រា",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1684,7 +1684,7 @@
     "examNumber": "04115",
     "name": "ភោក សំភាស",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1694,7 +1694,7 @@
     "examNumber": "04116",
     "name": "ភ័ក្រ ចំនាន",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1704,7 +1704,7 @@
     "examNumber": "04117",
     "name": "ភ័ណ្ឌ កន្និកា",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1714,7 +1714,7 @@
     "examNumber": "04118",
     "name": "ម៉ន ធារ៉ា",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1724,7 +1724,7 @@
     "examNumber": "04119",
     "name": "ម៉ម សុវ៉ាន់សត្យា",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1734,7 +1734,7 @@
     "examNumber": "04120",
     "name": "ម៉ាប់ សាម៉េន",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1744,7 +1744,7 @@
     "examNumber": "04121",
     "name": "ម៉ិក ឡាយហ៊ាង",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1754,7 +1754,7 @@
     "examNumber": "04122",
     "name": "ម៉ិញ វិរិទ្ធរា",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1764,7 +1764,7 @@
     "examNumber": "04123",
     "name": "ម៉ែន មុស្ហ្សា",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1774,7 +1774,7 @@
     "examNumber": "04124",
     "name": "ម៉ៅ សុបញ្ញារ៉ា",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1784,7 +1784,7 @@
     "examNumber": "04125",
     "name": "មុន ស្រីលេះ",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1794,7 +1794,7 @@
     "examNumber": "04126",
     "name": "យ៉ែម ស្រីអែម",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1804,7 +1804,7 @@
     "examNumber": "04127",
     "name": "យាន់ អាលីយ៉ា",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1814,7 +1814,7 @@
     "examNumber": "04128",
     "name": "យិនអ៊ឹម ពេជ្រវិជ្ជរ៉ា",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1824,7 +1824,7 @@
     "examNumber": "04129",
     "name": "យី ដេវីដ",
     "gender": "male",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1834,7 +1834,7 @@
     "examNumber": "04130",
     "name": "យូ ដានិ",
     "gender": "female",
-    "room": "05",
+    "room": "07",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1844,7 +1844,7 @@
     "examNumber": "04131",
     "name": "យើ សាលឿយ",
     "gender": "female",
-    "room": "05",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1854,7 +1854,7 @@
     "examNumber": "04132",
     "name": "យឿន សុធារា",
     "gender": "female",
-    "room": "05",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1864,7 +1864,7 @@
     "examNumber": "04133",
     "name": "រតនា ណាថាណាត់",
     "gender": "male",
-    "room": "05",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1874,7 +1874,7 @@
     "examNumber": "04134",
     "name": "រតនា រ៉ូម៉ា",
     "gender": "female",
-    "room": "05",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1884,7 +1884,7 @@
     "examNumber": "04135",
     "name": "រ៉ន​ ផាន់ណា",
     "gender": "female",
-    "room": "05",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1894,7 +1894,7 @@
     "examNumber": "04136",
     "name": "រ៉ា រស្មី",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1904,7 +1904,7 @@
     "examNumber": "04137",
     "name": "រ៉ា ស៊ាវថុង",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1914,7 +1914,7 @@
     "examNumber": "04138",
     "name": "រ៉ាន រក្សា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1924,7 +1924,7 @@
     "examNumber": "04139",
     "name": "រ៉ាន់ ណារី",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1934,7 +1934,7 @@
     "examNumber": "04140",
     "name": "រ៉ាំ ធារី",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1944,7 +1944,7 @@
     "examNumber": "04141",
     "name": "រ៉ីម រ៉ហ្វីលីន",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1954,7 +1954,7 @@
     "examNumber": "04142",
     "name": "រ៉ុម សុភាក់",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1964,7 +1964,7 @@
     "examNumber": "04143",
     "name": "រ៉េន អារីយ៉ា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1974,7 +1974,7 @@
     "examNumber": "04144",
     "name": "រិទ្ធ រក្សា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1984,7 +1984,7 @@
     "examNumber": "04145",
     "name": "រិន្ទ ម៉ានីត",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -1994,7 +1994,7 @@
     "examNumber": "04146",
     "name": "រី បូរ៉ា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2004,7 +2004,7 @@
     "examNumber": "04147",
     "name": "រុំ រីករាយ",
     "gender": "male",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2014,7 +2014,7 @@
     "examNumber": "04148",
     "name": "រើន មិនត្រា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2024,7 +2024,7 @@
     "examNumber": "04149",
     "name": "រឿន សុផល់",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2034,7 +2034,7 @@
     "examNumber": "04150",
     "name": "រឿម រចនា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2044,7 +2044,7 @@
     "examNumber": "04151",
     "name": "រៀល វរនុ",
     "gender": "male",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2054,7 +2054,7 @@
     "examNumber": "04152",
     "name": "រ័ត្ន បញ្ញា",
     "gender": "male",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2064,7 +2064,7 @@
     "examNumber": "04153",
     "name": "លាង លីនដា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2074,7 +2074,7 @@
     "examNumber": "04154",
     "name": "លាង សុភត្រា",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2084,7 +2084,7 @@
     "examNumber": "04155",
     "name": "លាង អ៊ីនហេ",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2094,7 +2094,7 @@
     "examNumber": "04156",
     "name": "លាត លីនី",
     "gender": "female",
-    "room": "06",
+    "room": "08",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2104,7 +2104,7 @@
     "examNumber": "05157",
     "name": "លិន លីណា",
     "gender": "male",
-    "room": "06",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2114,7 +2114,7 @@
     "examNumber": "05158",
     "name": "លីន លីណា",
     "gender": "male",
-    "room": "06",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2124,7 +2124,7 @@
     "examNumber": "05159",
     "name": "លីន ស្រីល័ក្ខ",
     "gender": "female",
-    "room": "06",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2134,7 +2134,7 @@
     "examNumber": "05160",
     "name": "លឿន លាង",
     "gender": "male",
-    "room": "06",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2144,7 +2144,7 @@
     "examNumber": "05161",
     "name": "លឿម ផល្លា",
     "gender": "female",
-    "room": "06",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2154,7 +2154,7 @@
     "examNumber": "05162",
     "name": "លៀច សុលី",
     "gender": "male",
-    "room": "06",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2164,7 +2164,7 @@
     "examNumber": "05163",
     "name": "វន សំណាង",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2174,7 +2174,7 @@
     "examNumber": "05164",
     "name": "វ៉ាត សាវន",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2184,7 +2184,7 @@
     "examNumber": "05165",
     "name": "វ៉ុន សុខនីសំណាង",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2194,7 +2194,7 @@
     "examNumber": "05166",
     "name": "វ៉ែន សុខជាតី",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2204,7 +2204,7 @@
     "examNumber": "05167",
     "name": "វី ថាវះរះ",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2214,7 +2214,7 @@
     "examNumber": "05168",
     "name": "វី រច្ចនា",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2224,7 +2224,7 @@
     "examNumber": "05169",
     "name": "វី ស្រីវីន",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2234,7 +2234,7 @@
     "examNumber": "05170",
     "name": "វុទ្ធី វណ្ណនីតា",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2244,7 +2244,7 @@
     "examNumber": "05171",
     "name": "វឿង សុភី",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2254,7 +2254,7 @@
     "examNumber": "05172",
     "name": "សន មន្នីរតនា",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2264,7 +2264,7 @@
     "examNumber": "05173",
     "name": "សរ សុភា",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2274,7 +2274,7 @@
     "examNumber": "05174",
     "name": "សល់ សំណាង",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2284,7 +2284,7 @@
     "examNumber": "05175",
     "name": "ស៊ង់ គឹមសាន",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2294,7 +2294,7 @@
     "examNumber": "05176",
     "name": "ស៊ន់ វិសាល",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2304,7 +2304,7 @@
     "examNumber": "05177",
     "name": "ស៊ា ឃឹមសាន",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2314,7 +2314,7 @@
     "examNumber": "05178",
     "name": "ស៊ា សីហា",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2324,7 +2324,7 @@
     "examNumber": "05179",
     "name": "ស៊ាំ សភ័ក្ត",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2334,7 +2334,7 @@
     "examNumber": "05180",
     "name": "ស៊ិន វណ្ណៈ",
     "gender": "male",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2344,7 +2344,7 @@
     "examNumber": "05181",
     "name": "ស៊ីន ស៊ាវហៃ",
     "gender": "female",
-    "room": "07",
+    "room": "09",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2354,7 +2354,7 @@
     "examNumber": "05182",
     "name": "ស៊ឹង ណារី",
     "gender": "female",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2364,7 +2364,7 @@
     "examNumber": "05183",
     "name": "ស៊ុន ករុណា",
     "gender": "male",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2374,7 +2374,7 @@
     "examNumber": "05184",
     "name": "ស៊ុន ធីនីកា",
     "gender": "female",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2384,7 +2384,7 @@
     "examNumber": "05185",
     "name": "ស៊ុន ស្រីនាថ",
     "gender": "female",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2394,7 +2394,7 @@
     "examNumber": "05186",
     "name": "ស៊ូន គណនេយ្យ",
     "gender": "female",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2404,7 +2404,7 @@
     "examNumber": "05187",
     "name": "ស៊្រីន ស្រីណែត",
     "gender": "female",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2414,7 +2414,7 @@
     "examNumber": "05188",
     "name": "សាងសុហួ ចាន់ម៉ូរីកា",
     "gender": "female",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2424,7 +2424,7 @@
     "examNumber": "05189",
     "name": "សាន ពិសិដ្ឋរិទ្ធមុនី",
     "gender": "male",
-    "room": "07",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2434,7 +2434,7 @@
     "examNumber": "05190",
     "name": "សាន ស្រីណុច",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2444,7 +2444,7 @@
     "examNumber": "05191",
     "name": "សាវឿត កវី",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2454,7 +2454,7 @@
     "examNumber": "05192",
     "name": "សិក ស្រីណែត",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2464,7 +2464,7 @@
     "examNumber": "05193",
     "name": "សិទ្ធ សីហា",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2474,7 +2474,7 @@
     "examNumber": "05194",
     "name": "សុក សំរេច",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2484,7 +2484,7 @@
     "examNumber": "05195",
     "name": "សុខ សំណាង",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2494,7 +2494,7 @@
     "examNumber": "05196",
     "name": "សុខហៀង ស្រីស្ទាន",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2504,7 +2504,7 @@
     "examNumber": "05197",
     "name": "សុខា មុនី",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2514,7 +2514,7 @@
     "examNumber": "05198",
     "name": "សុខុម ពេជ្រណា",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2524,7 +2524,7 @@
     "examNumber": "05199",
     "name": "សុន ចន្លិស",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2534,7 +2534,7 @@
     "examNumber": "05200",
     "name": "សុបិន ចាន់ណា",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2544,7 +2544,7 @@
     "examNumber": "05201",
     "name": "សូត្រ ធីតា",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2554,7 +2554,7 @@
     "examNumber": "05202",
     "name": "សូត្រ សក្កណា",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2564,7 +2564,7 @@
     "examNumber": "05203",
     "name": "សូល វិសាល",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2574,7 +2574,7 @@
     "examNumber": "05204",
     "name": "សួន ចន្ថា",
     "gender": "male",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2584,7 +2584,7 @@
     "examNumber": "05205",
     "name": "សួន ម៉ារី",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2594,7 +2594,7 @@
     "examNumber": "05206",
     "name": "សួនពៅ សាលីយ៉ា",
     "gender": "female",
-    "room": "08",
+    "room": "10",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2604,7 +2604,7 @@
     "examNumber": "06207",
     "name": "សួរ រ័ត្ន",
     "gender": "female",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2614,7 +2614,7 @@
     "examNumber": "06208",
     "name": "សួរ ស្រីនីត",
     "gender": "female",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2624,7 +2624,7 @@
     "examNumber": "06209",
     "name": "សឿង សុរៀម",
     "gender": "female",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2634,7 +2634,7 @@
     "examNumber": "06210",
     "name": "សៀង វាសនា",
     "gender": "male",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2644,7 +2644,7 @@
     "examNumber": "06211",
     "name": "សែន ប៊ុនសក្តិ",
     "gender": "male",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2654,7 +2654,7 @@
     "examNumber": "06212",
     "name": "សែម លីហ៊ាន",
     "gender": "male",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2664,7 +2664,7 @@
     "examNumber": "06213",
     "name": "សោម ស្រីអិន",
     "gender": "female",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2674,7 +2674,7 @@
     "examNumber": "06214",
     "name": "សៅ សាលីន",
     "gender": "female",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2684,7 +2684,7 @@
     "examNumber": "06215",
     "name": "ស្រេង លាភផេង",
     "gender": "male",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2694,7 +2694,7 @@
     "examNumber": "06216",
     "name": "សំ ស្រីហេង",
     "gender": "female",
-    "room": "08",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2704,7 +2704,7 @@
     "examNumber": "06217",
     "name": "សំណាង ដេវិត",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2714,7 +2714,7 @@
     "examNumber": "06218",
     "name": "សំបូរ វណ្ណនី",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2724,7 +2724,7 @@
     "examNumber": "06219",
     "name": "សំបូរ សុជាតិ",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2734,7 +2734,7 @@
     "examNumber": "06220",
     "name": "ស័យ ស្រីវ៉ាន",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2744,7 +2744,7 @@
     "examNumber": "06221",
     "name": "ហម ហួយម៉ី",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2754,7 +2754,7 @@
     "examNumber": "06222",
     "name": "ហ៊ាង អ៊ៀកលេង",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2764,7 +2764,7 @@
     "examNumber": "06223",
     "name": "ហ៊ាន រ៉ូឌី",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2774,7 +2774,7 @@
     "examNumber": "06224",
     "name": "ហ៊ុន​ សុខហេង",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2784,7 +2784,7 @@
     "examNumber": "06225",
     "name": "ហ៊ុំ ស្រីភ័ក្រ",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2794,7 +2794,7 @@
     "examNumber": "06226",
     "name": "ហ៊ូ ភ័ត្រា",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2804,7 +2804,7 @@
     "examNumber": "06227",
     "name": "ហាក់ ប៊ុនហេង",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2814,7 +2814,7 @@
     "examNumber": "06228",
     "name": "ហាក់ សប្ដាហ៍",
     "gender": "female",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2824,7 +2824,7 @@
     "examNumber": "06229",
     "name": "ហាក់ ហ៊ាក់",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2834,7 +2834,7 @@
     "examNumber": "06230",
     "name": "ហាន លាភហេង",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2844,7 +2844,7 @@
     "examNumber": "06231",
     "name": "ហាន់ សុខហ៊ាង",
     "gender": "male",
-    "room": "09",
+    "room": "11",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2854,7 +2854,7 @@
     "examNumber": "06232",
     "name": "ហាល់ គង់ហ៊ាន",
     "gender": "male",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2864,7 +2864,7 @@
     "examNumber": "06233",
     "name": "ហុង គីមរសា",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2874,7 +2874,7 @@
     "examNumber": "06234",
     "name": "ហូយ បញ្ញា",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2884,7 +2884,7 @@
     "examNumber": "06235",
     "name": "ហួច សូនី",
     "gender": "male",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2894,7 +2894,7 @@
     "examNumber": "06236",
     "name": "ហួត ស្រីកា",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2904,7 +2904,7 @@
     "examNumber": "06237",
     "name": "ហឿម ហាត",
     "gender": "male",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2914,7 +2914,7 @@
     "examNumber": "06238",
     "name": "ហេង ជីញជីញ",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2924,7 +2924,7 @@
     "examNumber": "06239",
     "name": "ហេង បូរមី",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2934,7 +2934,7 @@
     "examNumber": "06240",
     "name": "ហេង មិនា",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2944,7 +2944,7 @@
     "examNumber": "06241",
     "name": "ហេង ស៊ូគាង",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2954,7 +2954,7 @@
     "examNumber": "06242",
     "name": "ហេង ស៊ូគាវ",
     "gender": "female",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2964,7 +2964,7 @@
     "examNumber": "06243",
     "name": "ហៃ សុគន្ធិរាជ",
     "gender": "male",
-    "room": "09",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2974,7 +2974,7 @@
     "examNumber": "06244",
     "name": "ឡន លឿម",
     "gender": "male",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2984,7 +2984,7 @@
     "examNumber": "06245",
     "name": "ឡាត ​សុវណ្ណលីដា",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -2994,7 +2994,7 @@
     "examNumber": "06246",
     "name": "ឡាយ សេងម៉ីជីង",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3004,7 +3004,7 @@
     "examNumber": "06247",
     "name": "ឡី សុផាត",
     "gender": "male",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3014,7 +3014,7 @@
     "examNumber": "06248",
     "name": "ឡុង សុឡាន",
     "gender": "male",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3024,7 +3024,7 @@
     "examNumber": "06249",
     "name": "ឡូយ ឡុង",
     "gender": "male",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3034,7 +3034,7 @@
     "examNumber": "06250",
     "name": "ឯម ចន្ទលីវណ្ណរតន៍",
     "gender": "male",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3044,7 +3044,7 @@
     "examNumber": "06251",
     "name": "អ៊ូ សុធារី",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3054,7 +3054,7 @@
     "examNumber": "06252",
     "name": "អាង រ៉ានុត",
     "gender": "male",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3064,7 +3064,7 @@
     "examNumber": "06253",
     "name": "អាង ស្រីនិច",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3074,7 +3074,7 @@
     "examNumber": "06254",
     "name": "អាត រស្មី",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3084,7 +3084,7 @@
     "examNumber": "06255",
     "name": "អឿ ផល្លី",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3094,7 +3094,7 @@
     "examNumber": "06256",
     "name": "អឿន ចាន់ថា",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"
@@ -3104,7 +3104,7 @@
     "examNumber": "06257",
     "name": "វ៉ាន ណារីន",
     "gender": "female",
-    "room": "10",
+    "room": "12",
     "examType": "grade12_social",
     "scores": {},
     "status": "pending"

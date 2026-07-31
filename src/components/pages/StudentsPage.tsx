@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useExamStore } from '@/store/examStore';
 import { parseExcelFile } from '@/lib/excelUtils';
+import { getStudentSeqNo } from '@/lib/calculations';
 import { EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
 import { ExamType } from '@/types';
 import {
@@ -360,9 +361,9 @@ export default function StudentsPage() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((student, index) => (
+                {filtered.map((student) => (
                   <tr key={student.id} className={student.status === 'fail' ? 'failed' : ''}>
-                    <td style={{ color: 'var(--text-muted)' }}>{index + 1}</td>
+                    <td style={{ color: 'var(--text-muted)' }}>{getStudentSeqNo(student, students)}</td>
                     <td style={{ textAlign: 'left', paddingLeft: '16px' }}>
                       <span className="font-medium text-white">{student.name}</span>
                     </td>

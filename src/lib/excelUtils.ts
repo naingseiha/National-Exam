@@ -1,7 +1,7 @@
 import * as XLSX from 'xlsx';
 import { Student, ExamType, ImportResult } from '@/types';
 import { EXAM_CONFIGS } from '@/config/examConfig';
-import { generateStudentId } from '@/lib/calculations';
+import { generateStudentId, getStudentSeqNo } from '@/lib/calculations';
 
 /**
  * Parse Excel file and extract student data
@@ -162,8 +162,8 @@ export function exportToExcel(
   ];
 
   // Data rows
-  const dataRows = students.map((student, index) => [
-    index + 1,
+  const dataRows = students.map((student) => [
+    getStudentSeqNo(student, students),
     student.name,
     student.gender === 'female' ? 'ស្រី' : 'ប្រុស',
     ...subjects.map((s) => (student.scores || {})[s.id] ?? ''),
@@ -234,8 +234,8 @@ export function exportAllToExcel(
       'ចំណាត់ថ្នាក់',
     ];
 
-    const dataRows = roomStudents.map((student, index) => [
-      index + 1,
+    const dataRows = roomStudents.map((student) => [
+      getStudentSeqNo(student, students),
       student.examNumber,
       student.name,
       student.gender === 'female' ? 'ស្រី' : 'ប្រុស',
