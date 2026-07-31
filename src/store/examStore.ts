@@ -104,13 +104,32 @@ export const useExamStore = create<ExamStore>()(
       },
 
       importStudents: (studentsData) => {
-        const newStudents = studentsData.map((s) => {
+        const currentStudents = [...get().students];
+        
+        studentsData.forEach((s) => {
           const student: Student = { ...s, id: generateStudentId(), scores: s.scores ?? {} };
-          return calculateStudentResult(student);
+          const calculated = calculateStudentResult(student);
+          
+          const existingIdx = currentStudents.findIndex(
+            (c) => c.examType === calculated.examType && c.name === calculated.name
+          );
+          
+          if (existingIdx >= 0) {
+            // Update existing
+            currentStudents[existingIdx] = {
+              ...currentStudents[existingIdx],
+              ...calculated,
+              id: currentStudents[existingIdx].id, // keep old ID
+              scores: { ...currentStudents[existingIdx].scores, ...calculated.scores }
+            };
+          } else {
+            // Add new
+            currentStudents.push(calculated);
+          }
         });
-        const nextStudents = [...get().students, ...newStudents];
-        set({ students: nextStudents });
-        pushStudentsToFirebase(nextStudents);
+        
+        set({ students: currentStudents });
+        pushStudentsToFirebase(currentStudents);
       },
 
       clearStudents: (examType) => {
