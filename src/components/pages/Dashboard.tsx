@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useExamStore } from '@/store/examStore';
 import { calculateStats } from '@/lib/calculations';
 import { EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
@@ -17,7 +17,12 @@ import {
 const EXAM_TYPES: ExamType[] = ['grade9', 'grade12_science', 'grade12_social'];
 
 export default function Dashboard() {
+  const [isMounted, setIsMounted] = useState(false);
   const { students, selectedExamType, setSelectedExamType, getRooms } = useExamStore();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const overallStats = useMemo(() => calculateStats(students), [students]);
 
@@ -50,6 +55,10 @@ export default function Dashboard() {
     const failed = roomStudents.filter((s) => s.status === 'fail').length;
     return { name: `ប${room.name}`, ជាប់: passed, ធ្លាក់: failed };
   });
+
+  if (!isMounted) {
+    return <div className="glass-card p-12 text-center text-white">កំពុងផ្ទុកទិន្នន័យ...</div>;
+  }
 
   return (
     <div className="fade-in">
