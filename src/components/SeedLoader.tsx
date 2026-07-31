@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useExamStore } from '@/store/examStore';
-import { listenToFirebaseSync, isFirebaseConfigured, pushStudentsToFirebase, pushSchoolInfoToFirebase } from '@/lib/firebase';
+import { listenToFirebaseSync, isFirebaseConfigured } from '@/lib/firebase';
 import seedData from '@/data/seedStudents.json';
 import { Student, SchoolInfo } from '@/types';
 
@@ -17,20 +17,19 @@ const SEED_SCHOOL_INFO: SchoolInfo = {
 
 /**
  * Handles initial data seeding.
- * 
+ *
  * Strategy:
  * - If Firebase is configured: wait for Firebase to respond first.
  *   Only seed if Firebase has NO students after a timeout.
  * - If Firebase is NOT configured: seed local store directly if empty.
- * 
+ *
  * This prevents overwriting scores already saved in Firebase.
  */
 export default function SeedLoader() {
-  const { students, importStudents, setSchoolInfo, setStudentsFromRemote, setExamConfigsFromRemote, firebaseStatus } =
+  const { students, importStudents, setSchoolInfo, setStudentsFromRemote, setExamConfigsFromRemote } =
     useExamStore();
 
   const seeded = useRef(false);
-  const [firebaseChecked, setFirebaseChecked] = useState(false);
 
   useEffect(() => {
     if (seeded.current) return;
@@ -46,16 +45,23 @@ export default function SeedLoader() {
     }
 
     // Firebase IS configured: listen for first snapshot before deciding to seed
-    let unsubscribe: (() => void) | undefined;
-    let seedTimeout: ReturnType<typeof setTimeout>;
+    let unsub: (() => void) | null = null;
 
-    unsubscribe = listenToFirebaseSync({
+    const timeoutId = setTimeout(() => {
+      // Safety: if Firebase doesn't respond in 8s and store is still empty → seed locally
+      if (!seeded.current && students.length === 0) {
+        seeded.current = true;
+        setSchoolInfo(SEED_SCHOOL_INFO, true);
+        importStudents(seedData as Omit<Student, 'id'>[]);
+      }
+    }, 8000);
+
+    unsub = listenToFirebaseSync({
       onStudentsChange: (remoteStudents) => {
-        setFirebaseChecked(true);
+        clearTimeout(timeoutId);
         if (remoteStudents && remoteStudents.length > 0) {
           // Firebase has real student data — use it, DO NOT seed
           setStudentsFromRemote(remoteStudents);
-          clearTimeout(seedTimeout);
           seeded.current = true;
         } else if (!seeded.current) {
           // Firebase is empty — seed now and push to Firebase
@@ -63,10 +69,10 @@ export default function SeedLoader() {
           setSchoolInfo(SEED_SCHOOL_INFO, true);
           importStudents(seedData as Omit<Student, 'id'>[]);
         }
-        // Cleanup listener — one-time check is enough
-        if (unsubscribe) {
-          unsubscribe();
-          unsubscribe = undefined;
+        // Cleanup — only need first snapshot for seeding decision
+        if (unsub) {
+          unsub();
+          unsub = null;
         }
       },
       onSchoolInfoChange: (remoteInfo) => {
@@ -77,18 +83,9 @@ export default function SeedLoader() {
       },
     });
 
-    // Safety timeout: if Firebase doesn't respond in 8 seconds and still empty → seed locally
-    seedTimeout = setTimeout(() => {
-      if (!seeded.current && students.length === 0) {
-        seeded.current = true;
-        setSchoolInfo(SEED_SCHOOL_INFO, true);
-        importStudents(seedData as Omit<Student, 'id'>[]);
-      }
-    }, 8000);
-
     return () => {
-      clearTimeout(seedTimeout);
-      if (unsubscribe) unsubscribe();
+      clearTimeout(timeoutId);
+      if (unsub) unsub();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

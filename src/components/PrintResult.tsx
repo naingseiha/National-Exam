@@ -16,10 +16,8 @@ interface PrintResultProps {
   onClosePreview?: () => void;
 }
 
-export default function PrintResult({ students, config, schoolInfo, room, totalMale, totalFemale, allStudents, isPreview, onClosePreview }: PrintResultProps) {
+export default function PrintResult({ students, config, schoolInfo, totalFemale, allStudents, isPreview, onClosePreview }: PrintResultProps) {
   const subjects = config?.subjects || [];
-  const maxPossible = subjects.reduce((sum, s) => sum + s.maxScore * s.coefficient, 0);
-  const totalMaxRaw = subjects.reduce((sum, s) => sum + s.maxScore, 0);
 
   // Split students into chunks to handle page breaks for A4 if needed
   const ROWS_PER_PAGE = 35;

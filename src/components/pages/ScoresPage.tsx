@@ -18,7 +18,6 @@ export default function ScoresPage() {
     setSelectedRoom,
     getRooms,
     getStudentsByRoom,
-    updateScore,
     saveScoresBatch,
     recalculateAll,
     examConfigs,
