@@ -118,6 +118,33 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+}
+
+/* Sticky columns for exam table */
+.exam-table .sticky-col-1 {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  background-color: #121e35;
+}
+.exam-table .sticky-col-2 {
+  position: sticky;
+  left: 45px;
+  z-index: 20;
+  background-color: #121e35;
+  border-right: 2px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+.exam-table th.sticky-col-1,
+.exam-table th.sticky-col-2 {
+  z-index: 30;
+  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+}
+
+.exam-table tr:hover td.sticky-col-1,
+.exam-table tr:hover td.sticky-col-2 {
+  background-color: #1a2a4a;
 }
 
 /* Animated gradient border */

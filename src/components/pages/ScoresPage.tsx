@@ -356,8 +356,8 @@ export default function ScoresPage() {
                 <table className="exam-table w-full" style={{ minWidth: `${320 + subjects.length * 110}px` }}>
                   <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                     <tr>
-                      <th style={{ width: '45px' }}>ល.រ</th>
-                      <th style={{ textAlign: 'left', paddingLeft: '12px', minWidth: '150px' }}>ឈ្មោះ</th>
+                      <th className="sticky-col-1" style={{ width: '45px' }}>ល.រ</th>
+                      <th className="sticky-col-2" style={{ textAlign: 'left', paddingLeft: '12px', minWidth: '150px' }}>ឈ្មោះ</th>
                       <th style={{ width: '50px' }}>ភេទ</th>
                       {subjects.map((sub) => (
                         <th key={sub.id} style={{ minWidth: '95px' }}>
@@ -377,8 +377,8 @@ export default function ScoresPage() {
                       const isFail = student.status === 'fail';
                       return (
                         <tr key={student.id} className={isFail ? 'failed' : ''}>
-                          <td style={{ color: 'var(--text-muted)' }}>{getStudentSeqNo(student, students)}</td>
-                          <td style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                          <td className="sticky-col-1" style={{ color: 'var(--text-muted)' }}>{getStudentSeqNo(student, students)}</td>
+                          <td className="sticky-col-2" style={{ textAlign: 'left', paddingLeft: '12px' }}>
                             <span className="font-medium text-sm">{student.name}</span>
                           </td>
                           <td style={{ fontSize: '0.8rem', color: student.gender === 'female' ? '#f9a8d4' : '#93c5fd' }}>
