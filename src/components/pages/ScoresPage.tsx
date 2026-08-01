@@ -366,7 +366,7 @@ export default function ScoresPage() {
                       className="px-2 py-0.5 rounded text-xs font-mono font-bold"
                       style={{ background: 'rgba(59,130,246,0.15)', color: '#60a5fa' }}
                     >
-                      x{s.coefficient}
+                      /{s.maxScore}
                     </span>
                     <span className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                       {s.nameEn}
@@ -394,7 +394,7 @@ export default function ScoresPage() {
                         <th key={sub.id} style={{ minWidth: '95px' }}>
                           <div>{sub.name}</div>
                           <div style={{ fontSize: '0.7rem', opacity: 0.7 }}>
-                            /{sub.maxScore} (x{sub.coefficient})
+                            /{sub.maxScore}
                           </div>
                         </th>
                       ))}

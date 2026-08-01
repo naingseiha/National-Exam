@@ -35,6 +35,7 @@ export default function SeedLoader() {
     importStudents,
     setSchoolInfo,
     setStudentsFromRemote,
+    recalculateAll,
   } = useExamStore();
 
   const done = useRef(false);
@@ -50,6 +51,7 @@ export default function SeedLoader() {
         importStudents(seedData as Omit<Student, 'id'>[]);
       } else {
         done.current = true;
+        recalculateAll();
       }
       return;
     }
@@ -61,7 +63,7 @@ export default function SeedLoader() {
       if (done.current) return;
       console.warn('[SeedLoader] Firebase timeout — using localStorage data');
       done.current = true;
-      // Students from localStorage (Zustand persist) are already in store. Do nothing.
+      recalculateAll();
     }, 6000);
 
     const unsub = fetchStudentsOnce((firebaseStudents) => {
@@ -73,6 +75,7 @@ export default function SeedLoader() {
         // Firebase has data → use it as source of truth
         console.log('[SeedLoader] Loaded', firebaseStudents.length, 'students from Firebase');
         setStudentsFromRemote(firebaseStudents);
+        recalculateAll();
       } else {
         // Firebase is empty → seed it
         console.log('[SeedLoader] Firebase empty — seeding data');

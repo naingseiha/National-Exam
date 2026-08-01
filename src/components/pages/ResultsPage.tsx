@@ -211,7 +211,7 @@ export default function ResultsPage() {
                   <th>ល.រ</th>
                   <th style={{ textAlign: 'left', paddingLeft: '16px' }}>ឈ្មោះ</th>
                   <th>ភេទ</th>
-                  <th>បន្ទប់</th>
+
                   {subjects.map((sub) => (
                     <th key={sub.id}>
                       <div>{sub.name}</div>
@@ -221,7 +221,6 @@ export default function ResultsPage() {
                   <th>ពិន្ទុ</th>
                   <th>មធ្យម</th>
                   <th>លទ្ធផល</th>
-                  <th>ចំណាត់ថ្នាក់</th>
                 </tr>
               </thead>
               <tbody>
@@ -251,14 +250,7 @@ export default function ResultsPage() {
                       <td style={{ fontSize: '0.8rem', color: student.gender === 'female' ? '#f9a8d4' : '#93c5fd' }}>
                         {student.gender === 'female' ? 'ស្រី' : 'ប'}
                       </td>
-                      <td>
-                        <span
-                          className="px-2 py-0.5 rounded text-xs"
-                          style={{ background: colors.bg, color: colors.text }}
-                        >
-                          {student.room}
-                        </span>
-                      </td>
+
                       {subjects.map((sub) => {
                         const scores = student.scores || {};
                         const score = scores[sub.id];
@@ -291,18 +283,6 @@ export default function ResultsPage() {
                         {student.status === 'fail' && <span className="badge-fail">ធ្លាក់</span>}
                         {student.status === 'pending' && (
                           <span className="text-xs" style={{ color: 'var(--text-muted)' }}>-</span>
-                        )}
-                      </td>
-                      <td>
-                        {student.rank ? (
-                          <span
-                            className="font-bold"
-                            style={{ color: student.rank <= 3 ? '#f59e0b' : 'var(--text-secondary)' }}
-                          >
-                            {student.rank === 1 ? '🥇' : student.rank === 2 ? '🥈' : student.rank === 3 ? '🥉' : `#${student.rank}`}
-                          </span>
-                        ) : (
-                          <span style={{ color: 'var(--text-muted)' }}>-</span>
                         )}
                       </td>
                     </tr>

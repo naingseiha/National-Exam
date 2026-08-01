@@ -91,9 +91,7 @@ export async function exportToPDF(
           <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px;">
             ${genderSymbol}
           </td>
-          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 10px;">
-            ${student.room}
-          </td>
+
           ${subjectCells}
           <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
             isFail ? 'color: #d32f2f;' : ''
@@ -105,9 +103,7 @@ export async function exportToPDF(
           }">
             ${overallGrade}
           </td>
-          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold;">
-            ${student.rank ?? '-'}
-          </td>
+
         </tr>
       `;
     })
@@ -182,11 +178,11 @@ export async function exportToPDF(
             <th rowspan="2" style="border: 1px solid #000; width: 35px; text-align: center; font-size: 11px; font-weight: bold;">ល.រ</th>
             <th rowspan="2" style="border: 1px solid #000; text-align: center; font-size: 11px; font-weight: bold; min-width: 140px;">គោត្តនាម និងនាមសិស្ស</th>
             <th rowspan="2" style="border: 1px solid #000; width: 30px; text-align: center; font-size: 11px; font-weight: bold;">ភេទ</th>
-            <th rowspan="2" style="border: 1px solid #000; width: 40px; text-align: center; font-size: 11px; font-weight: bold;">ថ្នាក់</th>
+
             ${subjectHeaderCols}
             <th rowspan="2" style="border: 1px solid #000; width: 45px; text-align: center; font-size: 11px; font-weight: bold;">ពិន្ទុសរុប</th>
             <th rowspan="2" style="border: 1px solid #000; width: 45px; text-align: center; font-size: 11px; font-weight: bold;">និទ្ទេសសរុប</th>
-            <th rowspan="2" style="border: 1px solid #000; width: 45px; text-align: center; font-size: 11px; font-weight: bold;">ចំណាត់ថ្នាក់</th>
+
           </tr>
           <tr style="background-color: #ffffff;">
             ${subjectSubHeaderCols}
@@ -195,10 +191,8 @@ export async function exportToPDF(
             <th style="border: 1px solid #000; text-align: center; font-size: 9px; font-weight: bold;">No</th>
             <th style="border: 1px solid #000; text-align: center; font-size: 9px; font-weight: bold;">ឈ្មោះសិស្ស</th>
             <th style="border: 1px solid #000;"></th>
-            <th style="border: 1px solid #000;"></th>
             ${subjectMaxHeaderCols}
             <th style="border: 1px solid #000; text-align: center; font-size: 10px; font-weight: bold; background-color: #f3f4f6;">${totalMaxScore}</th>
-            <th style="border: 1px solid #000; background-color: #f3f4f6;"></th>
             <th style="border: 1px solid #000; background-color: #f3f4f6;"></th>
           </tr>
         </thead>

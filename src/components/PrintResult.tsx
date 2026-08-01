@@ -67,7 +67,7 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
             <th rowSpan={3} className="col-no">ល.រ</th>
             <th rowSpan={3} className="col-name">គោត្តនាមនិងនាម</th>
             <th rowSpan={3} className="col-gender">ភេទ</th>
-            <th rowSpan={3} className="col-room">ថ្នាក់</th>
+
             {subjects.map((sub) => (
               <th key={sub.id} colSpan={2}>{sub.name}</th>
             ))}
@@ -83,7 +83,6 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
             ))}
             <th rowSpan={2}>សរុប</th>
             <th rowSpan={2}>និទ្ទេស</th>
-            <th rowSpan={2}>ចំណាត់<br/>ថ្នាក់</th>
           </tr>
           {/* Row 3 */}
           <tr className="bg-gray">
@@ -112,7 +111,7 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
                 <td className="text-center">
                   {student.gender === 'female' ? 'ស' : 'ប'}
                 </td>
-                <td className="text-center font-bold">{toKhmerNum(student.room.replace(/\D/g, '') || student.room)}</td>
+
                 
                 {subjects.map((sub) => {
                   const score = scores[sub.id];
@@ -134,9 +133,6 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
                 </td>
                 <td className="text-center font-bold">
                   {getOverallGradeLetter(student)}
-                </td>
-                <td className="text-center font-bold">
-                  {student.rank ? toKhmerNum(student.rank) : '-'}
                 </td>
               </tr>
             );

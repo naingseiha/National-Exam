@@ -10,8 +10,8 @@ export function calculateStudentResult(student: Student): Student {
   const passCondition = config.passConditions;
   const scores = student.scores || {};
 
-  let totalWeighted = 0;
-  let totalCoefficient = 0;
+  let totalScore = 0;
+  let baseMaxScore = 0;
   let hasZero = false;
   let hasNull = false;
 
@@ -21,33 +21,32 @@ export function calculateStudentResult(student: Student): Student {
       hasNull = true;
       return;
     }
-    if (score === 0) hasZero = true;
-    totalWeighted += score * subject.coefficient;
-    totalCoefficient += subject.coefficient * (subject.maxScore / 20); // normalize to /20
+
+    if (subject.id === 'foreign' || subject.id === 'english') {
+      if (score > 25) {
+        totalScore += (score - 25);
+      }
+    } else {
+      baseMaxScore += subject.maxScore;
+      totalScore += score;
+      if (score === 0) hasZero = true;
+    }
   });
 
   if (hasNull) {
     return { ...student, status: 'pending' };
   }
 
-  const maxPossible = subjects.reduce(
-    (sum, s) => sum + s.maxScore * s.coefficient,
-    0
-  );
-  const average = totalCoefficient > 0 ? (totalWeighted / (maxPossible / 20)) : 0;
-  const totalScore = subjects.reduce(
-    (sum, s) => sum + (scores[s.id] ?? 0),
-    0
-  );
-
   let status: 'pass' | 'fail' = 'pass';
-  if (average < passCondition.minAverage) status = 'fail';
+  if (totalScore < passCondition.minAverage) status = 'fail';
   if (passCondition.noZeroAllowed && hasZero) status = 'fail';
+
+  const percentage = baseMaxScore > 0 ? (totalScore / baseMaxScore) * 100 : 0;
 
   return {
     ...student,
     totalScore,
-    average: Math.round(average * 100) / 100,
+    average: Math.round(percentage * 100) / 100,
     status,
   };
 }
@@ -72,9 +71,8 @@ export function getSubjectGradeLetter(score: number | null | undefined, maxScore
 export function getOverallGradeLetter(student: Student): string {
   if (student.status === 'pending' || student.average === undefined || student.average === null) return '-';
   if (student.status === 'fail') return 'F';
-  const avg = student.average;
-  // Based on 50 average scale
-  const pct = (avg / 50) * 100;
+  
+  const pct = student.average;
   if (pct >= 90) return 'A';
   if (pct >= 80) return 'B';
   if (pct >= 70) return 'C';
@@ -111,8 +109,8 @@ export function calculateStats(students: Student[]): ExamStats {
   const passRate = total > 0 ? Math.round((passed / total) * 100) : 0;
 
   const scores = students
-    .filter((s) => s.average !== undefined && s.status !== 'absent')
-    .map((s) => s.average ?? 0);
+    .filter((s) => s.totalScore !== undefined && s.status !== 'absent' && s.status !== 'pending')
+    .map((s) => s.totalScore ?? 0);
 
   const highestScore = scores.length > 0 ? Math.max(...scores) : 0;
   const lowestScore = scores.length > 0 ? Math.min(...scores) : 0;

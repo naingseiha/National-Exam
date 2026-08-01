@@ -158,7 +158,6 @@ export function exportToExcel(
     'ពិន្ទុសរុប',
     'មធ្យម',
     'លទ្ធផល',
-    'ចំណាត់ថ្នាក់',
   ];
 
   // Data rows
@@ -170,7 +169,6 @@ export function exportToExcel(
     student.totalScore ?? '',
     student.average ?? '',
     student.status === 'pass' ? 'ជាប់' : student.status === 'fail' ? 'ធ្លាក់' : 'មិនទាន់',
-    student.rank ?? '',
   ]);
 
   const allRows = [...headerRows, colHeaders, ...dataRows];
@@ -185,7 +183,6 @@ export function exportToExcel(
     { wch: 10 },  // ពិន្ទុសរុប
     { wch: 8 },   // មធ្យម
     { wch: 8 },   // លទ្ធផល
-    { wch: 10 },  // ចំណាត់ថ្នាក់
   ];
   worksheet['!cols'] = colWidths;
 
@@ -231,7 +228,6 @@ export function exportAllToExcel(
       'ពិន្ទុសរុប',
       'មធ្យម',
       'លទ្ធផល',
-      'ចំណាត់ថ្នាក់',
     ];
 
     const dataRows = roomStudents.map((student) => [
@@ -243,14 +239,13 @@ export function exportAllToExcel(
       student.totalScore ?? '',
       student.average ?? '',
       student.status === 'pass' ? 'ជាប់' : student.status === 'fail' ? 'ធ្លាក់' : 'មិនទាន់',
-      student.rank ?? '',
     ]);
 
     const worksheet = XLSX.utils.aoa_to_sheet([...headerRows, colHeaders, ...dataRows]);
     worksheet['!cols'] = [
       { wch: 5 }, { wch: 12 }, { wch: 25 }, { wch: 8 },
       ...subjects.map(() => ({ wch: 10 })),
-      { wch: 10 }, { wch: 8 }, { wch: 8 }, { wch: 10 },
+      { wch: 10 }, { wch: 8 }, { wch: 8 },
     ];
 
     XLSX.utils.book_append_sheet(workbook, worksheet, `បន្ទប់ ${room}`);

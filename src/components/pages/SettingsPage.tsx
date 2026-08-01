@@ -287,30 +287,13 @@ export default function SettingsPage() {
                             style={{ width: '70px' }}
                           />
                         </div>
-                        <div>
-                          <label className="block text-xs mb-1" style={{ color: 'var(--text-muted)' }}>
-                            មេគុណ
-                          </label>
-                          <input
-                            type="number"
-                            min={1}
-                            max={10}
-                            value={subject.coefficient}
-                            onChange={(e) =>
-                              updateSubject(subject.id, {
-                                coefficient: parseFloat(e.target.value) || subject.coefficient,
-                              })
-                            }
-                            className="score-input"
-                            style={{ width: '70px' }}
-                          />
-                        </div>
+
                         <div className="ml-auto">
                           <span
                             className="px-3 py-1 rounded-lg text-xs font-bold"
                             style={{ background: colors.bg, color: colors.text }}
                           >
-                            x{subject.coefficient} · /{subject.maxScore}
+                            /{subject.maxScore}
                           </span>
                         </div>
                       </div>
