@@ -56,7 +56,7 @@ export default function SettingsPage() {
     <div className="fade-in">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
           ការ<span className="gradient-text">កំណត់</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)' }}>
@@ -70,7 +70,7 @@ export default function SettingsPage() {
           style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)' }}
         >
           <CheckCircle size={18} style={{ color: '#10b981' }} />
-          <p className="text-white font-medium">រក្សាទុកបានជោគជ័យ!</p>
+          <p className="text-[var(--text-primary)] font-medium">រក្សាទុកបានជោគជ័យ!</p>
         </div>
       )}
 
@@ -85,7 +85,7 @@ export default function SettingsPage() {
               >
                 <School size={18} style={{ color: '#60a5fa' }} />
               </div>
-              <h3 className="font-bold text-white">ព័ត៌មានមណ្ឌល</h3>
+              <h3 className="font-bold text-[var(--text-primary)]">ព័ត៌មានមណ្ឌល</h3>
             </div>
 
             <div className="space-y-4">
@@ -113,7 +113,7 @@ export default function SettingsPage() {
 
               <button
                 onClick={saveSchoolInfo}
-                className="w-full py-2.5 rounded-xl font-semibold text-white text-sm flex items-center justify-center gap-2 mt-2"
+                className="w-full py-2.5 rounded-xl font-semibold text-[var(--text-primary)] text-sm flex items-center justify-center gap-2 mt-2"
                 style={{
                   background: 'linear-gradient(135deg, #2563eb, #4f46e5)',
                   boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
@@ -134,7 +134,7 @@ export default function SettingsPage() {
               >
                 <Settings size={18} style={{ color: '#f59e0b' }} />
               </div>
-              <h3 className="font-bold text-white">ពិន្ទុប្រើជាប់</h3>
+              <h3 className="font-bold text-[var(--text-primary)]">ពិន្ទុប្រើជាប់</h3>
             </div>
             <div className="space-y-4">
               {EXAM_TYPES.map((type) => {
@@ -175,7 +175,7 @@ export default function SettingsPage() {
                 >
                   <Database size={18} style={{ color: '#f87171' }} />
                 </div>
-                <h3 className="font-bold text-white">Firebase Sync</h3>
+                <h3 className="font-bold text-[var(--text-primary)]">Firebase Sync</h3>
               </div>
               <span
                 className="px-2.5 py-1 rounded-full text-xs font-semibold"
@@ -203,7 +203,7 @@ export default function SettingsPage() {
             </p>
             <div
               className="p-3 rounded-lg text-xs font-mono space-y-1"
-              style={{ background: 'rgba(15,23,41,0.8)', color: '#93c5fd' }}
+              style={{ background: 'var(--bg-primary)', color: '#93c5fd' }}
             >
               <p>NEXT_PUBLIC_FIREBASE_DATABASE_URL</p>
               <p>NEXT_PUBLIC_FIREBASE_API_KEY</p>
@@ -218,7 +218,7 @@ export default function SettingsPage() {
             {/* Exam type tabs */}
             <div
               className="flex border-b"
-              style={{ borderColor: 'rgba(42,63,111,0.4)' }}
+              style={{ borderColor: 'var(--border-color)' }}
             >
               {EXAM_TYPES.map((type) => {
                 const c = EXAM_TYPE_COLORS[type];
@@ -242,7 +242,7 @@ export default function SettingsPage() {
             <div className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <BookOpen size={18} style={{ color: colors.text }} />
-                <h3 className="font-bold text-white">
+                <h3 className="font-bold text-[var(--text-primary)]">
                   មុខវិជ្ជា — {EXAM_TYPE_LABELS[selectedType]}
                 </h3>
               </div>
@@ -252,7 +252,7 @@ export default function SettingsPage() {
                   <div
                     key={subject.id}
                     className="flex items-center gap-4 p-4 rounded-xl"
-                    style={{ background: 'rgba(26,42,74,0.5)', border: '1px solid rgba(42,63,111,0.3)' }}
+                    style={{ background: 'var(--bg-secondary)', border: '1px solid var(--glass-border)' }}
                   >
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">

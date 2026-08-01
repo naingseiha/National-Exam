@@ -11,42 +11,59 @@ export function calculateStudentResult(student: Student): Student {
   const scores = student.scores || {};
 
   let totalScore = 0;
-  let baseMaxScore = 0;
   let hasZero = false;
-  let hasNull = false;
+  let enteredCount = 0;
+
+  // Total base max score for the exam type (excluding bonus subjects like foreign/english)
+  const totalBaseMaxScore = subjects
+    .filter((s) => s.id !== 'foreign' && s.id !== 'english')
+    .reduce((sum, s) => sum + s.maxScore, 0) || 1;
 
   subjects.forEach((subject) => {
     const score = scores[subject.id];
-    if (score === null || score === undefined) {
-      hasNull = true;
+    if (score === null || score === undefined || isNaN(score)) {
       return;
     }
+
+    enteredCount++;
 
     if (subject.id === 'foreign' || subject.id === 'english') {
       if (score > 25) {
         totalScore += (score - 25);
       }
     } else {
-      baseMaxScore += subject.maxScore;
       totalScore += score;
       if (score === 0) hasZero = true;
     }
   });
 
-  if (hasNull) {
-    return { ...student, status: 'pending' };
+  if (enteredCount === 0) {
+    return {
+      ...student,
+      totalScore: undefined,
+      average: undefined,
+      status: 'pending',
+    };
   }
 
-  let status: 'pass' | 'fail' = 'pass';
-  if (totalScore < passCondition.minAverage) status = 'fail';
-  if (passCondition.noZeroAllowed && hasZero) status = 'fail';
+  // Calculate percentage out of total base max score (e.g. 475 or 200)
+  const percentage = (totalScore / totalBaseMaxScore) * 100;
+  const average = Math.round(percentage * 100) / 100;
 
-  const percentage = baseMaxScore > 0 ? (totalScore / baseMaxScore) * 100 : 0;
+  let status: 'pass' | 'fail' | 'pending' = 'pending';
+
+  if (passCondition.noZeroAllowed && hasZero) {
+    status = 'fail';
+  } else if (enteredCount === subjects.length) {
+    status = totalScore >= passCondition.minAverage ? 'pass' : 'fail';
+  } else {
+    status = 'pending';
+  }
 
   return {
     ...student,
     totalScore,
-    average: Math.round(percentage * 100) / 100,
+    average,
     status,
   };
 }

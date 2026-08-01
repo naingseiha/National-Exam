@@ -15,7 +15,10 @@ import {
   GraduationCap,
   Menu,
   X,
+  Moon,
+  Sun,
 } from 'lucide-react';
+import { useExamStore } from '@/store/examStore';
 
 const navItems = [
   {
@@ -64,6 +67,7 @@ export default function Sidebar({ children }: SidebarProps) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, setTheme } = useExamStore();
 
   return (
     <div className="flex min-h-screen" style={{ background: 'var(--bg-primary)' }}>
@@ -85,15 +89,15 @@ export default function Sidebar({ children }: SidebarProps) {
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
         style={{
-          background: 'linear-gradient(180deg, #0f1729 0%, #162040 50%, #0f1729 100%)',
-          borderRight: '1px solid rgba(42, 63, 111, 0.5)',
-          boxShadow: '4px 0 24px rgba(0,0,0,0.3)',
+          background: 'var(--bg-secondary)',
+          borderRight: 'var(--glass-border)',
+          boxShadow: '4px 0 24px rgba(0,0,0,0.1)',
         }}
       >
         {/* Logo */}
         <div
           className="flex items-center gap-3 p-4 border-b"
-          style={{ borderColor: 'rgba(42, 63, 111, 0.5)', minHeight: '72px' }}
+          style={{ borderColor: 'var(--border-color)', minHeight: '72px' }}
         >
           <div
             className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
@@ -106,7 +110,7 @@ export default function Sidebar({ children }: SidebarProps) {
           </div>
           {!collapsed && (
             <div className="overflow-hidden">
-              <p className="text-white font-bold text-sm leading-tight">ប្រព័ន្ធប្រឡង</p>
+              <p className="font-bold text-sm leading-tight" style={{ color: 'var(--text-primary)' }}>ប្រព័ន្ធប្រឡង</p>
               <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>ថ្នាក់ជាតិ ២០២៦</p>
             </div>
           )}
@@ -132,10 +136,10 @@ export default function Sidebar({ children }: SidebarProps) {
                 `}
                 style={{
                   background: isActive
-                    ? 'linear-gradient(135deg, rgba(37,99,235,0.3), rgba(79,70,229,0.3))'
+                    ? 'var(--table-header-bg)'
                     : 'transparent',
-                  border: isActive ? '1px solid rgba(59,130,246,0.3)' : '1px solid transparent',
-                  color: isActive ? 'white' : 'var(--text-secondary)',
+                  border: isActive ? '1px solid var(--accent-blue)' : '1px solid transparent',
+                  color: isActive ? 'var(--accent-blue)' : 'var(--text-secondary)',
                 }}
               >
                 {/* Active indicator */}
@@ -148,12 +152,12 @@ export default function Sidebar({ children }: SidebarProps) {
                 <Icon
                   size={18}
                   className="flex-shrink-0 transition-colors"
-                  style={{ color: isActive ? '#60a5fa' : 'inherit' }}
+                  style={{ color: isActive ? 'var(--accent-blue)' : 'inherit' }}
                 />
                 {!collapsed && (
                   <div>
                     <p className="text-sm font-medium leading-tight">{item.label}</p>
-                    <p className="text-xs" style={{ color: isActive ? 'rgba(148,163,184,0.8)' : 'var(--text-muted)' }}>
+                    <p className="text-xs" style={{ color: isActive ? 'var(--accent-blue)' : 'var(--text-muted)' }}>
                       {item.labelEn}
                     </p>
                   </div>
@@ -165,9 +169,9 @@ export default function Sidebar({ children }: SidebarProps) {
                                 invisible opacity-0 group-hover:visible group-hover:opacity-100
                                 transition-all duration-200 whitespace-nowrap z-50"
                     style={{
-                      background: 'rgba(22, 32, 64, 0.95)',
-                      border: '1px solid rgba(42, 63, 111, 0.5)',
-                      color: 'white',
+                      background: 'var(--bg-card)',
+                      border: 'var(--glass-border)',
+                      color: 'var(--text-primary)',
                     }}
                   >
                     {item.label}
@@ -178,16 +182,30 @@ export default function Sidebar({ children }: SidebarProps) {
           })}
         </nav>
 
-        {/* Collapse button */}
-        <div className="p-3 border-t hidden lg:block" style={{ borderColor: 'rgba(42, 63, 111, 0.5)' }}>
+        {/* Theme Toggle & Collapse button */}
+        <div className="p-3 border-t flex flex-col gap-2" style={{ borderColor: 'var(--border-color)' }}>
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl
+                       transition-all duration-200 text-sm"
+            style={{
+              background: 'var(--input-bg)',
+              color: 'var(--text-secondary)',
+              border: 'var(--glass-border)',
+            }}
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            {!collapsed && <span>{theme === 'dark' ? 'ពន្លឺថ្ងៃ' : 'ងងឹត'}</span>}
+          </button>
+          
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl
-                       transition-all duration-200 hover:text-white text-sm"
+            className="w-full hidden lg:flex items-center justify-center gap-2 py-2 px-3 rounded-xl
+                       transition-all duration-200 text-sm"
             style={{
-              background: 'rgba(42, 63, 111, 0.3)',
+              background: 'var(--input-bg)',
               color: 'var(--text-secondary)',
-              border: '1px solid rgba(42, 63, 111, 0.3)',
+              border: 'var(--glass-border)',
             }}
           >
             {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
@@ -206,8 +224,8 @@ export default function Sidebar({ children }: SidebarProps) {
         <header
           className="lg:hidden flex items-center gap-3 px-4 py-3 sticky top-0 z-30"
           style={{
-            background: 'rgba(15, 23, 41, 0.95)',
-            borderBottom: '1px solid rgba(42, 63, 111, 0.5)',
+            background: 'var(--bg-primary)',
+            borderBottom: 'var(--glass-border)',
             backdropFilter: 'blur(12px)',
           }}
         >
@@ -219,8 +237,8 @@ export default function Sidebar({ children }: SidebarProps) {
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
           <div className="flex items-center gap-2">
-            <GraduationCap size={18} style={{ color: '#60a5fa' }} />
-            <span className="font-bold text-white text-sm">ប្រព័ន្ធប្រឡងថ្នាក់ជាតិ</span>
+            <GraduationCap size={18} style={{ color: 'var(--accent-blue)' }} />
+            <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>ប្រព័ន្ធប្រឡងថ្នាក់ជាតិ</span>
           </div>
         </header>
 

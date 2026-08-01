@@ -57,14 +57,14 @@ export default function Dashboard() {
   });
 
   if (!isMounted) {
-    return <div className="glass-card p-12 text-center text-white">កំពុងផ្ទុកទិន្នន័យ...</div>;
+    return <div className="glass-card p-12 text-center" style={{ color: 'var(--text-primary)' }}>កំពុងផ្ទុកទិន្នន័យ...</div>;
   }
 
   return (
     <div className="fade-in">
       {/* Page Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">
+        <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
           ផ្ទាំង<span className="gradient-text">គ្រប់គ្រង</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)' }}>
@@ -148,7 +148,7 @@ export default function Dashboard() {
               style={{
                 border: isSelected
                   ? `2px solid ${colors.border}`
-                  : '1px solid rgba(42, 63, 111, 0.5)',
+                  : 'var(--glass-border)',
                 background: isSelected ? colors.bg : undefined,
                 transform: isSelected ? 'scale(1.01)' : 'scale(1)',
               }}
@@ -161,7 +161,7 @@ export default function Dashboard() {
                   <GraduationCap size={18} style={{ color: colors.text }} />
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">{EXAM_TYPE_LABELS[type]}</p>
+                  <p className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{EXAM_TYPE_LABELS[type]}</p>
                   <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
                     {total} នាក់
                   </p>
@@ -182,7 +182,7 @@ export default function Dashboard() {
                 </div>
               </div>
               {/* Progress bar */}
-              <div className="mt-3 h-1.5 rounded-full" style={{ background: 'rgba(42,63,111,0.5)' }}>
+              <div className="mt-3 h-1.5 rounded-full" style={{ background: 'var(--border-color)' }}>
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${passRate}%`, background: colors.text }}
@@ -198,7 +198,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Pie Chart */}
           <div className="glass-card p-6">
-            <h3 className="text-lg font-bold text-white mb-1">
+            <h3 className="text-lg font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
               ចំណែក {EXAM_TYPE_LABELS[selectedExamType]}
             </h3>
             <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
@@ -222,10 +222,10 @@ export default function Dashboard() {
                   </Pie>
                   <Tooltip
                     contentStyle={{
-                      background: 'rgba(22, 32, 64, 0.95)',
-                      border: '1px solid rgba(42,63,111,0.5)',
+                      background: 'var(--bg-card)',
+                      border: 'var(--glass-border)',
                       borderRadius: '8px',
-                      color: 'white',
+                      color: 'var(--text-primary)',
                     }}
                   />
                   <Legend formatter={(value) => <span style={{ color: '#94a3b8' }}>{value}</span>} />
@@ -236,7 +236,7 @@ export default function Dashboard() {
 
           {/* Bar Chart by Room */}
           <div className="glass-card p-6">
-            <h3 className="text-lg font-bold text-white mb-1">ជាប់/ធ្លាក់តាមបន្ទប់</h3>
+            <h3 className="text-lg font-bold mb-1" style={{ color: 'var(--text-primary)' }}>ជាប់/ធ្លាក់តាមបន្ទប់</h3>
             <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
               {EXAM_TYPE_LABELS[selectedExamType]}
             </p>
@@ -257,10 +257,10 @@ export default function Dashboard() {
                     />
                     <Tooltip
                       contentStyle={{
-                        background: 'rgba(22, 32, 64, 0.95)',
-                        border: '1px solid rgba(42,63,111,0.5)',
+                        background: 'var(--bg-card)',
+                        border: 'var(--glass-border)',
                         borderRadius: '8px',
-                        color: 'white',
+                        color: 'var(--text-primary)',
                       }}
                     />
                     <Legend formatter={(v) => <span style={{ color: '#94a3b8' }}>{v}</span>} />
@@ -282,7 +282,7 @@ export default function Dashboard() {
           style={{ borderStyle: 'dashed' }}
         >
           <BookOpen size={48} className="mx-auto mb-4" style={{ color: 'var(--text-muted)' }} />
-          <p className="text-xl font-semibold text-white mb-2">មិនទាន់មានទិន្នន័យ</p>
+          <p className="text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>មិនទាន់មានទិន្នន័យ</p>
           <p style={{ color: 'var(--text-secondary)' }}>
             សូមចូលទៅ <strong style={{ color: '#60a5fa' }}>គ្រប់គ្រងសិស្ស</strong> ដើម្បី import ឬ បន្ថែមសិស្ស
           </p>
@@ -294,7 +294,7 @@ export default function Dashboard() {
         <div className="glass-card p-6">
           <div className="flex items-center gap-3 mb-4">
             <Award size={20} style={{ color: '#f59e0b' }} />
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
               សង្ខេបតាមបន្ទប់ — {EXAM_TYPE_LABELS[selectedExamType]}
             </h3>
           </div>

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import SeedLoader from '@/components/SeedLoader';
 import FirebaseSync from '@/components/FirebaseSync';
+import ThemeProvider from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'ប្រព័ន្ធគ្រប់គ្រងការប្រឡងថ្នាក់ជាតិ',
@@ -26,9 +27,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen" style={{ background: 'var(--bg-primary)', fontFamily: "'Battambang', 'Siemreap', 'Noto Sans Khmer', 'Inter', sans-serif" }}>
-        <SeedLoader />
-        <FirebaseSync />
-        {children}
+        <ThemeProvider>
+          <SeedLoader />
+          <FirebaseSync />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

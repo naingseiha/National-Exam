@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useExamStore } from '@/store/examStore';
 import { pushStudentsToFirebase, isFirebaseConfigured } from '@/lib/firebase';
 import { EXAM_CONFIGS, EXAM_TYPE_LABELS, EXAM_TYPE_COLORS } from '@/config/examConfig';
-import { getStudentSeqNo } from '@/lib/calculations';
+import { getStudentSeqNo, calculateStudentResult } from '@/lib/calculations';
 import { ExamType } from '@/types';
 import { ClipboardList, Save, CheckCircle, AlertCircle } from 'lucide-react';
 
@@ -204,7 +204,7 @@ export default function ScoresPage() {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
             បញ្ចូល<span className="gradient-text">ពិន្ទុ</span>
           </h1>
           <p style={{ color: 'var(--text-secondary)' }}>
@@ -214,7 +214,7 @@ export default function ScoresPage() {
         <button
           onClick={saveAllScores}
           disabled={saving}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm text-white transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm text-white transition-all shadow-md hover:shadow-lg"
           style={{
             background: 'linear-gradient(135deg, #2563eb, #4f46e5)',
             boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
@@ -241,7 +241,7 @@ export default function ScoresPage() {
           style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)' }}
         >
           <CheckCircle size={18} style={{ color: '#10b981' }} />
-          <p className="text-white font-medium">
+          <p className="text-[var(--text-primary)] font-medium">
             រក្សាទុកបានជោគជ័យ! ពិន្ទុទាំងអស់ត្រូវបានគណនាឡើងវិញ។
           </p>
         </div>
@@ -264,7 +264,7 @@ export default function ScoresPage() {
           style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)' }}
         >
           <AlertCircle size={18} style={{ color: '#ef4444' }} />
-          <p className="text-white font-medium text-sm">{saveError}</p>
+          <p className="text-[var(--text-primary)] font-medium text-sm">{saveError}</p>
         </div>
       )}
 
@@ -282,8 +282,8 @@ export default function ScoresPage() {
               }}
               className="px-4 py-2 rounded-xl font-medium text-sm transition-all"
               style={{
-                background: selectedExamType === type ? c.bg : 'rgba(26,42,74,0.5)',
-                border: `1px solid ${selectedExamType === type ? c.border : 'rgba(42,63,111,0.4)'}`,
+                background: selectedExamType === type ? c.bg : 'var(--bg-secondary)',
+                border: `1px solid ${selectedExamType === type ? c.border : 'var(--border-color)'}`,
                 color: selectedExamType === type ? c.text : 'var(--text-secondary)',
               }}
             >
@@ -296,7 +296,7 @@ export default function ScoresPage() {
       {rooms.length === 0 ? (
         <div className="glass-card p-12 text-center">
           <ClipboardList size={48} className="mx-auto mb-4" style={{ color: 'var(--text-muted)' }} />
-          <p className="text-xl font-semibold text-white mb-2">គ្មានសិស្សសម្រាប់ {EXAM_TYPE_LABELS[selectedExamType]}</p>
+          <p className="text-xl font-semibold text-[var(--text-primary)] mb-2">គ្មានសិស្សសម្រាប់ {EXAM_TYPE_LABELS[selectedExamType]}</p>
           <p style={{ color: 'var(--text-secondary)' }}>
             សូមចូលទៅ <strong style={{ color: '#60a5fa' }}>គ្រប់គ្រងសិស្ស</strong> ដើម្បី import ឬ បន្ថែម
           </p>
@@ -326,14 +326,14 @@ export default function ScoresPage() {
                     }}
                     className="flex-shrink-0 lg:w-full text-left px-4 py-3 rounded-xl transition-all"
                     style={{
-                      background: isActive ? colors.bg : 'rgba(26,42,74,0.4)',
-                      border: `1px solid ${isActive ? colors.border : 'rgba(42,63,111,0.3)'}`,
+                      background: isActive ? colors.bg : 'var(--bg-secondary)',
+                      border: `1px solid ${isActive ? colors.border : 'var(--glass-border)'}`,
                       color: isActive ? colors.text : 'var(--text-secondary)',
                       minWidth: '120px',
                     }}
                   >
                     <p className="font-semibold text-sm">បន្ទប់ {room.name}</p>
-                    <p className="text-xs mt-0.5" style={{ color: isActive ? 'rgba(255,255,255,0.6)' : 'var(--text-muted)' }}>
+                    <p className="text-xs mt-0.5" style={{ color: isActive ? 'var(--accent-blue)' : 'var(--text-muted)' }}>
                       {scored}/{room.studentCount} នាក់
                     </p>
                   </button>
@@ -346,10 +346,10 @@ export default function ScoresPage() {
           <div className="flex-1 w-full min-w-0 glass-card overflow-hidden">
             <div
               className="p-4 border-b flex items-center justify-between gap-4 flex-wrap"
-              style={{ borderColor: 'rgba(42,63,111,0.4)' }}
+              style={{ borderColor: 'var(--border-color)' }}
             >
               <div>
-                <h3 className="font-bold text-white">
+                <h3 className="font-bold text-[var(--text-primary)]">
                   {activeRoom ? `បន្ទប់ ${activeRoom}` : 'ជ្រើសបន្ទប់'}
                 </h3>
                 {activeRoom && (
@@ -364,7 +364,7 @@ export default function ScoresPage() {
                   <div key={s.id} className="flex flex-col items-center">
                     <span
                       className="px-2 py-0.5 rounded text-xs font-mono font-bold"
-                      style={{ background: 'rgba(59,130,246,0.15)', color: '#60a5fa' }}
+                      style={{ background: 'var(--accent-blue-transparent)', color: 'var(--accent-blue)' }}
                     >
                       /{s.maxScore}
                     </span>
@@ -385,7 +385,7 @@ export default function ScoresPage() {
                 }}
               >
                 <table className="exam-table w-full" style={{ minWidth: `${320 + subjects.length * 110}px` }}>
-                  <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+                  <thead className="sticky top-0 z-30">
                     <tr>
                       <th className="sticky-col-1" style={{ width: '45px' }}>ល.រ</th>
                       <th className="sticky-col-2" style={{ textAlign: 'left', paddingLeft: '12px', minWidth: '150px' }}>ឈ្មោះ</th>
@@ -405,14 +405,26 @@ export default function ScoresPage() {
                   </thead>
                   <tbody>
                     {roomStudents.map((student, rowIdx) => {
-                      const isFail = student.status === 'fail';
+                      const studentLocalScores = localScores[student.id] || {};
+                      const liveScoresObj: Record<string, number | null> = {};
+                      subjects.forEach((sub) => {
+                        const v = studentLocalScores[sub.id];
+                        if (v !== undefined && v !== '') {
+                          const num = parseFloat(v);
+                          liveScoresObj[sub.id] = isNaN(num) ? null : num;
+                        } else {
+                          liveScoresObj[sub.id] = null;
+                        }
+                      });
+                      const liveResult = calculateStudentResult({ ...student, scores: liveScoresObj });
+                      const isFail = liveResult.status === 'fail';
                       return (
                         <tr key={student.id} className={isFail ? 'failed' : ''}>
                           <td className="sticky-col-1" style={{ color: 'var(--text-muted)' }}>{getStudentSeqNo(student, students)}</td>
                           <td className="sticky-col-2" style={{ textAlign: 'left', paddingLeft: '12px' }}>
                             <span className="font-medium text-sm">{student.name}</span>
                           </td>
-                          <td style={{ fontSize: '0.8rem', color: student.gender === 'female' ? '#f9a8d4' : '#93c5fd' }}>
+                          <td style={{ fontSize: '0.8rem', fontWeight: 600, color: student.gender === 'female' ? '#db2777' : '#2563eb' }}>
                             {student.gender === 'female' ? 'ស្រី' : 'ប'}
                           </td>
                           {subjects.map((sub, colIdx) => {
@@ -443,17 +455,19 @@ export default function ScoresPage() {
                               </td>
                             );
                           })}
-                          <td className="font-mono font-bold" style={{ color: '#60a5fa' }}>
-                            {student.totalScore ?? '-'}
+                          <td className="font-mono font-bold" style={{ color: 'var(--accent-blue)' }}>
+                            {liveResult.totalScore !== undefined ? liveResult.totalScore : '-'}
                           </td>
-                          <td className="font-mono" style={{ color: isFail ? '#f87171' : '#34d399' }}>
-                            {student.average ?? '-'}
+                          <td className="font-mono font-bold" style={{ color: isFail ? '#dc2626' : liveResult.status === 'pass' ? '#059669' : 'var(--text-secondary)' }}>
+                            {liveResult.average !== undefined ? `${liveResult.average}%` : '-'}
                           </td>
                           <td>
-                            {student.status === 'pass' && <span className="badge-pass">ជាប់</span>}
-                            {student.status === 'fail' && <span className="badge-fail">ធ្លាក់</span>}
-                            {student.status === 'pending' && (
-                              <span className="text-xs" style={{ color: 'var(--text-muted)' }}>-</span>
+                            {liveResult.status === 'pass' && <span className="badge-pass">ជាប់</span>}
+                            {liveResult.status === 'fail' && <span className="badge-fail">ធ្លាក់</span>}
+                            {liveResult.status === 'pending' && (
+                              <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+                                {liveResult.totalScore !== undefined ? 'កំពុងបញ្ចូល...' : '-'}
+                              </span>
                             )}
                           </td>
                         </tr>

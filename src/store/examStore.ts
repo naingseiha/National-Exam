@@ -46,6 +46,10 @@ interface ExamStore {
   selectedRoom: string | null;
   setSelectedRoom: (room: string | null) => void;
 
+  // Theme
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+
   // Computed getters
   getStudentsByRoom: (examType: ExamType, room: string) => Student[];
   getRooms: (examType: ExamType) => Room[];
@@ -217,6 +221,10 @@ export const useExamStore = create<ExamStore>()(
       setSelectedExamType: (type) => set({ selectedExamType: type }),
       selectedRoom: null,
       setSelectedRoom: (room) => set({ selectedRoom: room }),
+
+      // Theme
+      theme: 'light',
+      setTheme: (theme) => set({ theme }),
 
       // Computed getters
       getStudentsByRoom: (examType, room) => {

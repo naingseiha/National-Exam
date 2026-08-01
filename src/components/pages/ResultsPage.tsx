@@ -78,7 +78,7 @@ export default function ResultsPage() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">
+            <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
               បញ្ជី<span className="gradient-text">លទ្ធផល</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)' }}>
@@ -106,8 +106,8 @@ export default function ResultsPage() {
               onClick={() => { setSelectedExamType(type); setSelectedRoom(null); }}
               className="px-4 py-2 rounded-xl font-medium text-sm transition-all"
               style={{
-                background: selectedExamType === type ? c.bg : 'rgba(26,42,74,0.5)',
-                border: `1px solid ${selectedExamType === type ? c.border : 'rgba(42,63,111,0.4)'}`,
+                background: selectedExamType === type ? c.bg : 'var(--bg-secondary)',
+                border: `1px solid ${selectedExamType === type ? c.border : 'var(--border-color)'}`,
                 color: selectedExamType === type ? c.text : 'var(--text-secondary)',
               }}
             >
@@ -158,16 +158,16 @@ export default function ResultsPage() {
                 style={{
                   background:
                     statusFilter === value
-                      ? value === 'pass' ? 'rgba(16,185,129,0.2)' : value === 'fail' ? 'rgba(239,68,68,0.2)' : 'rgba(59,130,246,0.2)'
-                      : 'rgba(42,63,111,0.3)',
+                      ? value === 'pass' ? 'rgba(16,185,129,0.15)' : value === 'fail' ? 'rgba(239,68,68,0.15)' : 'var(--accent-blue-transparent)'
+                      : 'var(--bg-secondary)',
                   color:
                     statusFilter === value
-                      ? value === 'pass' ? '#34d399' : value === 'fail' ? '#f87171' : '#60a5fa'
+                      ? value === 'pass' ? '#059669' : value === 'fail' ? '#dc2626' : 'var(--accent-blue)'
                       : 'var(--text-secondary)',
                   border: `1px solid ${
                     statusFilter === value
-                      ? value === 'pass' ? 'rgba(16,185,129,0.4)' : value === 'fail' ? 'rgba(239,68,68,0.4)' : 'rgba(59,130,246,0.4)'
-                      : 'rgba(42,63,111,0.3)'
+                      ? value === 'pass' ? 'rgba(16,185,129,0.4)' : value === 'fail' ? 'rgba(239,68,68,0.4)' : 'var(--accent-blue)'
+                      : 'var(--border-color)'
                   }`,
                 }}
               >
@@ -193,9 +193,9 @@ export default function ResultsPage() {
 
       {/* Results table */}
       <div className="glass-card overflow-hidden">
-        <div className="p-4 border-b flex items-center gap-3" style={{ borderColor: 'rgba(42,63,111,0.4)' }}>
+        <div className="p-4 border-b flex items-center gap-3" style={{ borderColor: 'var(--border-color)' }}>
           <FileText size={18} style={{ color: colors.text }} />
-          <span className="font-semibold text-white">
+          <span className="font-semibold text-[var(--text-primary)]">
             {displayStudents.length} នាក់
           </span>
           <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -230,24 +230,19 @@ export default function ResultsPage() {
                     <tr
                       key={student.id}
                       className={isFail ? 'failed' : ''}
-                      style={{
-                        background: isFail ? 'rgba(239,68,68,0.04)' : undefined,
-                      }}
                     >
                       <td style={{ color: 'var(--text-muted)', fontWeight: 500 }}>{getStudentSeqNo(student, students)}</td>
                       <td style={{ textAlign: 'left', paddingLeft: '16px' }}>
                         <span
                           className="font-semibold"
                           style={{
-                            color: isFail ? '#fca5a5' : 'white',
-                            textDecoration: isFail ? 'line-through' : 'none',
-                            textDecorationColor: '#ef4444',
+                            color: isFail ? '#dc2626' : 'var(--text-primary)',
                           }}
                         >
                           {student.name}
                         </span>
                       </td>
-                      <td style={{ fontSize: '0.8rem', color: student.gender === 'female' ? '#f9a8d4' : '#93c5fd' }}>
+                      <td style={{ fontSize: '0.8rem', fontWeight: 600, color: student.gender === 'female' ? '#db2777' : '#2563eb' }}>
                         {student.gender === 'female' ? 'ស្រី' : 'ប'}
                       </td>
 
@@ -258,31 +253,31 @@ export default function ResultsPage() {
                         return (
                           <td
                             key={sub.id}
-                            className="font-mono"
+                            className="font-mono font-medium"
                             style={{
                               color: score === null || score === undefined
                                 ? 'var(--text-muted)'
-                                : isPoor ? '#fca5a5' : 'var(--text-primary)',
+                                : isPoor ? '#dc2626' : 'var(--text-primary)',
                             }}
                           >
                             {score !== null && score !== undefined ? score : '-'}
                           </td>
                         );
                       })}
-                      <td className="font-mono font-bold" style={{ color: isFail ? '#fca5a5' : '#60a5fa' }}>
+                      <td className="font-mono font-bold" style={{ color: isFail ? '#dc2626' : 'var(--accent-blue)' }}>
                         {student.totalScore ?? '-'}
                       </td>
                       <td
                         className="font-mono font-bold"
-                        style={{ color: isFail ? '#f87171' : '#34d399' }}
+                        style={{ color: isFail ? '#dc2626' : '#059669' }}
                       >
-                        {student.average ?? '-'}
+                        {student.average !== undefined ? `${student.average}%` : '-'}
                       </td>
                       <td>
                         {student.status === 'pass' && <span className="badge-pass">ជាប់</span>}
                         {student.status === 'fail' && <span className="badge-fail">ធ្លាក់</span>}
                         {student.status === 'pending' && (
-                          <span className="text-xs" style={{ color: 'var(--text-muted)' }}>-</span>
+                          <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>-</span>
                         )}
                       </td>
                     </tr>
@@ -294,7 +289,7 @@ export default function ResultsPage() {
         ) : (
           <div className="py-16 text-center">
             <FileText size={40} className="mx-auto mb-3" style={{ color: 'var(--text-muted)' }} />
-            <p className="text-white font-medium mb-1">គ្មានទិន្នន័យ</p>
+            <p className="text-[var(--text-primary)] font-medium mb-1">គ្មានទិន្នន័យ</p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
               ជ្រើសសំណួររបស់អ្នក ឬ បន្ថែមទិន្នន័យ
             </p>

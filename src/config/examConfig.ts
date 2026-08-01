@@ -71,7 +71,7 @@ export const EXAM_TYPE_LABELS: Record<ExamType, string> = {
 };
 
 export const EXAM_TYPE_COLORS: Record<ExamType, { bg: string; text: string; border: string }> = {
-  grade9: { bg: 'rgba(16, 185, 129, 0.15)', text: '#34d399', border: 'rgba(16, 185, 129, 0.3)' },
-  grade12_science: { bg: 'rgba(59, 130, 246, 0.15)', text: '#60a5fa', border: 'rgba(59, 130, 246, 0.3)' },
-  grade12_social: { bg: 'rgba(139, 92, 246, 0.15)', text: '#a78bfa', border: 'rgba(139, 92, 246, 0.3)' },
+  grade9: { bg: 'rgba(16, 185, 129, 0.15)', text: 'var(--accent-green)', border: 'rgba(16, 185, 129, 0.3)' },
+  grade12_science: { bg: 'var(--accent-blue-transparent)', text: 'var(--accent-blue)', border: 'var(--accent-blue-transparent)' },
+  grade12_social: { bg: 'rgba(139, 92, 246, 0.15)', text: 'var(--accent-purple)', border: 'rgba(139, 92, 246, 0.3)' },
 };

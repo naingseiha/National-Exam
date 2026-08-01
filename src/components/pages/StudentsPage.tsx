@@ -97,7 +97,7 @@ export default function StudentsPage() {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
             គ្រប់គ្រង<span className="gradient-text">សិស្ស</span>
           </h1>
           <p style={{ color: 'var(--text-secondary)' }}>
@@ -109,8 +109,8 @@ export default function StudentsPage() {
             onClick={() => setShowAddForm(!showAddForm)}
             className="flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-sm transition-all"
             style={{
-              background: 'linear-gradient(135deg, rgba(37,99,235,0.3), rgba(79,70,229,0.3))',
-              border: '1px solid rgba(59,130,246,0.4)',
+              background: 'var(--table-header-bg)',
+              border: '1px solid var(--accent-blue-transparent)',
               color: '#60a5fa',
             }}
           >
@@ -149,15 +149,15 @@ export default function StudentsPage() {
               onClick={() => { setSelectedExamType(type); setFilterRoom('all'); }}
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all"
               style={{
-                background: selectedExamType === type ? c.bg : 'rgba(26,42,74,0.5)',
-                border: `1px solid ${selectedExamType === type ? c.border : 'rgba(42,63,111,0.4)'}`,
+                background: selectedExamType === type ? c.bg : 'var(--bg-secondary)',
+                border: `1px solid ${selectedExamType === type ? c.border : 'var(--border-color)'}`,
                 color: selectedExamType === type ? c.text : 'var(--text-secondary)',
               }}
             >
               {EXAM_TYPE_LABELS[type]}
               <span
                 className="px-2 py-0.5 rounded-full text-xs"
-                style={{ background: selectedExamType === type ? c.border : 'rgba(42,63,111,0.5)', color: selectedExamType === type ? c.text : 'var(--text-muted)' }}
+                style={{ background: selectedExamType === type ? c.border : 'var(--border-glass)', color: selectedExamType === type ? c.text : 'var(--text-muted)' }}
               >
                 {count}
               </span>
@@ -170,7 +170,7 @@ export default function StudentsPage() {
       {showAddForm && (
         <div className="glass-card p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-white">បន្ថែមសិស្សថ្មី</h3>
+            <h3 className="font-bold text-[var(--text-primary)]">បន្ថែមសិស្សថ្មី</h3>
             <button onClick={() => setShowAddForm(false)} style={{ color: 'var(--text-muted)' }}>
               <X size={18} />
             </button>
@@ -220,7 +220,7 @@ export default function StudentsPage() {
           <div className="flex gap-3 mt-4">
             <button
               onClick={handleAddStudent}
-              className="px-6 py-2 rounded-xl font-medium text-sm text-white transition-all"
+              className="px-6 py-2 rounded-xl font-medium text-sm text-[var(--text-primary)] transition-all"
               style={{ background: 'linear-gradient(135deg, #2563eb, #4f46e5)' }}
             >
               បន្ថែម
@@ -228,7 +228,7 @@ export default function StudentsPage() {
             <button
               onClick={() => setShowAddForm(false)}
               className="px-6 py-2 rounded-xl font-medium text-sm transition-all"
-              style={{ background: 'rgba(42,63,111,0.3)', color: 'var(--text-secondary)' }}
+              style={{ background: 'var(--glass-border)', color: 'var(--text-secondary)' }}
             >
               បោះបង់
             </button>
@@ -240,7 +240,7 @@ export default function StudentsPage() {
       <div
         className={`glass-card p-8 mb-6 border-dashed text-center cursor-pointer transition-all duration-200 ${dragOver ? 'scale-105' : ''}`}
         style={{
-          borderColor: dragOver ? colors.border : 'rgba(42,63,111,0.5)',
+          borderColor: dragOver ? colors.border : 'var(--border-glass)',
           background: dragOver ? colors.bg : undefined,
         }}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
@@ -258,12 +258,12 @@ export default function StudentsPage() {
         {importing ? (
           <div className="flex flex-col items-center gap-3">
             <div className="spinner" />
-            <p className="text-white font-medium">កំពុង import...</p>
+            <p className="text-[var(--text-primary)] font-medium">កំពុង import...</p>
           </div>
         ) : (
           <>
             <FileSpreadsheet size={40} className="mx-auto mb-3" style={{ color: colors.text }} />
-            <p className="text-white font-semibold mb-1">
+            <p className="text-[var(--text-primary)] font-semibold mb-1">
               ទាញ & ទម្លាក់ឯកសារ Excel នៅទីនេះ
             </p>
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -288,7 +288,7 @@ export default function StudentsPage() {
             <AlertCircle size={20} style={{ color: '#ef4444', flexShrink: 0 }} />
           )}
           <div>
-            <p className="font-semibold text-white">
+            <p className="font-semibold text-[var(--text-primary)]">
               {importResult.count > 0
                 ? `Import ជោគជ័យ! បន្ថែម ${importResult.count} នាក់ ក្នុង ${importResult.rooms} បន្ទប់`
                 : 'Import បរាជ័យ'}
@@ -339,10 +339,10 @@ export default function StudentsPage() {
 
       {/* Student Table */}
       <div className="glass-card overflow-hidden">
-        <div className="p-4 border-b flex items-center justify-between" style={{ borderColor: 'rgba(42,63,111,0.4)' }}>
+        <div className="p-4 border-b flex items-center justify-between" style={{ borderColor: 'var(--border-color)' }}>
           <div className="flex items-center gap-2">
             <Users size={18} style={{ color: colors.text }} />
-            <span className="font-semibold text-white">
+            <span className="font-semibold text-[var(--text-primary)]">
               {filtered.length} នាក់
             </span>
           </div>
@@ -365,7 +365,7 @@ export default function StudentsPage() {
                   <tr key={student.id} className={student.status === 'fail' ? 'failed' : ''}>
                     <td style={{ color: 'var(--text-muted)' }}>{getStudentSeqNo(student, students)}</td>
                     <td style={{ textAlign: 'left', paddingLeft: '16px' }}>
-                      <span className="font-medium text-white">{student.name}</span>
+                      <span className="font-medium text-[var(--text-primary)]">{student.name}</span>
                     </td>
                     <td>
                       <span style={{ color: student.gender === 'female' ? '#f9a8d4' : '#93c5fd', fontSize: '0.8rem' }}>
@@ -407,7 +407,7 @@ export default function StudentsPage() {
           ) : (
             <div className="py-16 text-center">
               <Users size={40} className="mx-auto mb-3" style={{ color: 'var(--text-muted)' }} />
-              <p className="text-white font-medium mb-1">គ្មានសិស្ស</p>
+              <p className="text-[var(--text-primary)] font-medium mb-1">គ្មានសិស្ស</p>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
                 Import ឯកសារ Excel ឬ បន្ថែមសិស្សសម្រាប់ {EXAM_TYPE_LABELS[selectedExamType]}
               </p>

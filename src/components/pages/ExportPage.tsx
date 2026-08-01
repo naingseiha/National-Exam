@@ -75,7 +75,7 @@ export default function ExportPage() {
     <div className="fade-in">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
           នាំ<span className="gradient-text">ចេញ</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)' }}>
@@ -94,15 +94,15 @@ export default function ExportPage() {
               onClick={() => setSelectedExamType(type)}
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all"
               style={{
-                background: selectedExamType === type ? c.bg : 'rgba(26,42,74,0.5)',
-                border: `1px solid ${selectedExamType === type ? c.border : 'rgba(42,63,111,0.4)'}`,
+                background: selectedExamType === type ? c.bg : 'var(--bg-secondary)',
+                border: `1px solid ${selectedExamType === type ? c.border : 'var(--border-color)'}`,
                 color: selectedExamType === type ? c.text : 'var(--text-secondary)',
               }}
             >
               {EXAM_TYPE_LABELS[type]}
               <span
                 className="px-1.5 py-0.5 rounded text-xs"
-                style={{ background: 'rgba(0,0,0,0.2)' }}
+                style={{ background: 'var(--bg-secondary)' }}
               >
                 {count}
               </span>
@@ -114,7 +114,7 @@ export default function ExportPage() {
       {examStudents.length === 0 ? (
         <div className="glass-card p-12 text-center">
           <Download size={48} className="mx-auto mb-4" style={{ color: 'var(--text-muted)' }} />
-          <p className="text-xl font-semibold text-white mb-2">
+          <p className="text-xl font-semibold text-[var(--text-primary)] mb-2">
             គ្មានសិស្សសម្រាប់ {EXAM_TYPE_LABELS[selectedExamType]}
           </p>
           <p style={{ color: 'var(--text-secondary)' }}>
@@ -135,7 +135,7 @@ export default function ExportPage() {
                   <FileSpreadsheet size={28} style={{ color: '#34d399' }} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Export ទាំងអស់ → Excel</h3>
+                  <h3 className="text-lg font-bold text-[var(--text-primary)]">Export ទាំងអស់ → Excel</h3>
                   <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                     {rooms.length} បន្ទប់ · {examStudents.length} នាក់ · format ស្អាត
                   </p>
@@ -147,7 +147,7 @@ export default function ExportPage() {
               <button
                 onClick={handleExportAllExcel}
                 disabled={!!exporting}
-                className="w-full py-3 rounded-xl font-semibold text-white transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl font-semibold text-[var(--text-primary)] transition-all flex items-center justify-center gap-2"
                 style={{
                   background: 'linear-gradient(135deg, #059669, #10b981)',
                   boxShadow: '0 4px 12px rgba(16,185,129,0.3)',
@@ -172,7 +172,7 @@ export default function ExportPage() {
                   <FileText size={28} style={{ color: '#f87171' }} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Export ទាំងអស់ → PDF</h3>
+                  <h3 className="text-lg font-bold text-[var(--text-primary)]">Export ទាំងអស់ → PDF</h3>
                   <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                     {rooms.length} បន្ទប់ · {examStudents.length} នាក់ · A4 Landscape
                   </p>
@@ -185,7 +185,7 @@ export default function ExportPage() {
               <button
                 onClick={handleExportAllPDF}
                 disabled={!!exporting}
-                className="w-full py-3 rounded-xl font-semibold text-white transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl font-semibold text-[var(--text-primary)] transition-all flex items-center justify-center gap-2"
                 style={{
                   background: 'linear-gradient(135deg, #dc2626, #ef4444)',
                   boxShadow: '0 4px 12px rgba(239,68,68,0.3)',
@@ -205,10 +205,10 @@ export default function ExportPage() {
           <div className="glass-card overflow-hidden">
             <div
               className="p-4 border-b flex items-center gap-3"
-              style={{ borderColor: 'rgba(42,63,111,0.4)' }}
+              style={{ borderColor: 'var(--border-color)' }}
             >
               <Layers size={18} style={{ color: colors.text }} />
-              <h3 className="font-bold text-white">Export តាមបន្ទប់ — {EXAM_TYPE_LABELS[selectedExamType]}</h3>
+              <h3 className="font-bold text-[var(--text-primary)]">Export តាមបន្ទប់ — {EXAM_TYPE_LABELS[selectedExamType]}</h3>
             </div>
             <div className="p-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -220,11 +220,11 @@ export default function ExportPage() {
                     <div
                       key={room.id}
                       className="flex items-center gap-4 p-4 rounded-xl"
-                      style={{ background: 'rgba(26,42,74,0.5)', border: '1px solid rgba(42,63,111,0.3)' }}
+                      style={{ background: 'var(--bg-secondary)', border: '1px solid var(--glass-border)' }}
                     >
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-white">បន្ទប់ {room.name}</span>
+                          <span className="font-semibold text-[var(--text-primary)]">បន្ទប់ {room.name}</span>
                           <span
                             className="px-2 py-0.5 rounded text-xs"
                             style={{ background: colors.bg, color: colors.text }}
