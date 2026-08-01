@@ -444,6 +444,7 @@ export default function ScoresPage() {
                                       handleScoreChange(student.id, sub.id, e.target.value, sub.maxScore)
                                     }
                                     onKeyDown={(e) => handleKeyDown(e, rowIdx, colIdx)}
+                                    onWheel={(e) => e.currentTarget.blur()}
                                     className={`score-input ${err ? 'invalid' : ''}`}
                                     style={{ width: '68px' }}
                                     placeholder="-"
