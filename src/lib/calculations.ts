@@ -203,3 +203,19 @@ export function toKhmerNum(num: number | string): string {
   const khmerDigits = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
   return String(num).replace(/\d/g, (d) => khmerDigits[parseInt(d)]);
 }
+
+/**
+ * Get color code for grade letter
+ */
+export function getGradeColor(grade: string): string {
+  switch (grade) {
+    case 'A': return '#16a34a';
+    case 'B': return '#2563eb';
+    case 'C': return '#0284c7';
+    case 'D': return '#d97706';
+    case 'E': return '#ea580c';
+    case 'F': return '#dc2626';
+    default: return '#6b7280';
+  }
+}
+

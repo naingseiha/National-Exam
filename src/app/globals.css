@@ -489,7 +489,68 @@ input[type='number'] {
 .col-gender { width: 35px; }
 .col-room { width: 45px; }
 
-/* Red strikethrough for failed students */
+/* Printable Grade Colors */
+.grade-A {
+  color: #16a34a !important;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.grade-B {
+  color: #2563eb !important;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.grade-C {
+  color: #0284c7 !important;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.grade-D {
+  color: #d97706 !important;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.grade-E {
+  color: #ea580c !important;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.grade-F {
+  color: #dc2626 !important;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Full row red strikethrough for failed students */
+.print-table tr.failed-row td {
+  position: relative;
+}
+
+.print-table tr.failed-row td::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1.5px;
+  background-color: #dc2626 !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  pointer-events: none;
+  z-index: 5;
+}
+
 .strikethrough-red {
   position: relative;
   display: inline-block;
@@ -530,6 +591,7 @@ input[type='number'] {
 .failed-row td {
   color: black !important;
 }
+
 
 @media print {
   body {

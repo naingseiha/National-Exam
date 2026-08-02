@@ -32,6 +32,17 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
   const totalStr = toKhmerNum(students.length);
   const femaleStr = toKhmerNum(totalFemale || students.filter(s => s.gender === 'female').length);
 
+  const gradeCounts = useMemo(() => {
+    const counts: Record<string, number> = { A: 0, B: 0, C: 0, D: 0, E: 0, F: 0 };
+    students.forEach((s) => {
+      const g = getOverallGradeLetter(s);
+      if (g in counts) {
+        counts[g]++;
+      }
+    });
+    return counts;
+  }, [students]);
+
   const content = pages.map((pageStudents, pageIdx) => (
     <div key={pageIdx} className="print-page">
       {/* Header */}
@@ -48,7 +59,7 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
             <b>{schoolInfo.name || 'វិទ្យាល័យ'}</b>
           </div>
           <div className="print-header-right">
-            ឯកទេស {config.name.includes('សង្គម') ? 'វិទ្យាសាស្ត្រសង្គម' : config.name.includes('វិទ្យាសាស្ត្រ') ? 'វិទ្យាសាស្ត្រ' : config.name}<br/>
+            ថ្នាក់ {config.name.includes('សង្គម') ? 'វិទ្យាសាស្ត្រសង្គម' : config.name.includes('វិទ្យាសាស្ត្រ') ? 'វិទ្យាសាស្ត្រ' : config.name}<br/>
             សិស្សសរុប{totalStr}នាក់ ស្រី {femaleStr}នាក់
           </div>
         </div>
@@ -97,16 +108,13 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
           {pageStudents.map((student) => {
             const isFail = student.status === 'fail';
             const scores = student.scores || {};
+            const overallGrade = getOverallGradeLetter(student);
             
             return (
               <tr key={student.id} className={isFail ? 'failed-row' : ''}>
                 <td className="text-center">{toKhmerNum(getStudentSeqNo(student, allStudents))}</td>
                 <td className="text-left font-bold px-1 name-cell">
-                  {isFail ? (
-                    <div className="strikethrough-red">{student.name}</div>
-                  ) : (
-                    student.name
-                  )}
+                  {student.name}
                 </td>
                 <td className="text-center">
                   {student.gender === 'female' ? 'ស' : 'ប'}
@@ -121,7 +129,7 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
                       <td className="text-center font-bold">
                         {score !== null && score !== undefined ? score : '-'}
                       </td>
-                      <td className="text-center font-bold">
+                      <td className={`text-center font-bold grade-${grade}`}>
                         {grade}
                       </td>
                     </React.Fragment>
@@ -131,8 +139,8 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
                 <td className="text-center font-bold total-score">
                   {student.totalScore ?? '-'}
                 </td>
-                <td className="text-center font-bold">
-                  {getOverallGradeLetter(student)}
+                <td className={`text-center font-bold grade-${overallGrade}`}>
+                  {overallGrade}
                 </td>
               </tr>
             );
@@ -142,8 +150,19 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
 
       {pageIdx === pages.length - 1 && (
         <div className="print-footer" style={{ marginTop: '20px', fontSize: '11px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <div>
-            បានបញ្ឈប់បញ្ជីត្រឹមចំនួន <b>{totalStr}</b>នាក់ ក្នុងនោះស្រីចំនួន <b>{femaleStr}</b>នាក់
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+            <div>
+              បានបញ្ឈប់បញ្ជីត្រឹមចំនួន <b>{totalStr}</b>នាក់ ក្នុងនោះស្រីចំនួន <b>{femaleStr}</b>នាក់
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
+              <span>សរុបចំនួននិទ្ទេស៖</span>
+              <span className="grade-A">A = {toKhmerNum(gradeCounts.A)}</span>,
+              <span className="grade-B">B = {toKhmerNum(gradeCounts.B)}</span>,
+              <span className="grade-C">C = {toKhmerNum(gradeCounts.C)}</span>,
+              <span className="grade-D">D = {toKhmerNum(gradeCounts.D)}</span>,
+              <span className="grade-E">E = {toKhmerNum(gradeCounts.E)}</span>,
+              <span className="grade-F">F = {toKhmerNum(gradeCounts.F)}</span>
+            </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '5px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
@@ -161,8 +180,8 @@ export default function PrintResult({ students, config, schoolInfo, totalFemale,
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, textAlign: 'center', lineHeight: '1.6' }}>
-              <div>ថ្ងៃព្រហស្បតិ៍ ១រោច ខែទុតិយាសាឍ ឆ្នាំរោង ឆស័ក ព.ស ២៥៦៨</div>
-              <div>{schoolInfo.name || 'វិទ្យាល័យ'} ថ្ងៃទី៣០ ខែកក្កដា ឆ្នាំ២០២៦</div>
+              <div>ថ្ងៃចន្ទ ១៤កើត ខែស្រាពណ៍ ឆ្នាំរោង ឆស័ក ព.ស. ២៥៧០</div>
+              <div>{schoolInfo.name || 'វិទ្យាល័យ'} ថ្ងៃទី០៣ ខែសីហា ឆ្នាំ២០២៦</div>
               <div style={{ fontFamily: "'Moul', 'Khmer OS Muol Light', serif", marginTop: '10px' }}>ប្រធានមណ្ឌល</div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Student, ExamType, SchoolInfo } from '@/types';
 import { EXAM_CONFIGS } from '@/config/examConfig';
-import { getSubjectGradeLetter, getOverallGradeLetter, getStudentSeqNo } from '@/lib/calculations';
+import { getSubjectGradeLetter, getOverallGradeLetter, getStudentSeqNo, getGradeColor } from '@/lib/calculations';
 
 /**
  * Generate Ministry MoEYS Official PDF report matching the user's sample format exactly
@@ -21,9 +21,9 @@ export async function exportToPDF(
 
   const examStreamLabel =
     examType === 'grade12_science'
-      ? 'ឯកទេស វិទ្យាសាស្ត្រ'
+      ? 'ថ្នាក់ វិទ្យាសាស្ត្រ'
       : examType === 'grade12_social'
-      ? 'ឯកទេស វិទ្យាសាស្ត្រសង្គម'
+      ? 'ថ្នាក់ វិទ្យាសាស្ត្រសង្គម'
       : 'ថ្នាក់ទី ៩';
 
   // Create temporary container for HTML-to-Image rendering
@@ -54,27 +54,39 @@ export async function exportToPDF(
       const overallGrade = getOverallGradeLetter(student);
       const seqNo = getStudentSeqNo(student, students);
 
+      const strikethroughStyle = isFail
+        ? 'position: relative;'
+        : '';
+
+      const cellLineHtml = isFail
+        ? '<div style="position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background-color: #dc2626; pointer-events: none; z-index: 10;"></div>'
+        : '';
+
       const subjectCells = subjects
         .map((sub) => {
           const scores = student.scores || {};
           const score = scores[sub.id];
           const grade = getSubjectGradeLetter(score, sub.maxScore);
+          const color = getGradeColor(grade);
           return `
-            <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold;">
+            <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${strikethroughStyle}">
+              ${cellLineHtml}
               ${score !== null && score !== undefined ? score : '-'}
             </td>
-            <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
-              grade === 'F' ? 'color: #d32f2f;' : ''
-            }">
+            <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; color: ${color}; ${strikethroughStyle}">
+              ${cellLineHtml}
               ${grade}
             </td>
           `;
         })
         .join('');
 
+      const overallGradeColor = getGradeColor(overallGrade);
+
       return `
         <tr style="position: relative;">
-          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; position: relative;">
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; ${strikethroughStyle}">
+            ${cellLineHtml}
             ${
               isFail
                 ? `<span style="border: 1.5px solid #d32f2f; border-radius: 50%; padding: 1px 4px; color: #d32f2f; font-weight: bold; display: inline-block;">${
@@ -83,24 +95,22 @@ export async function exportToPDF(
                 : `${seqNo}`
             }
           </td>
-          <td style="border: 1px solid #000; text-align: left; padding: 4px 6px; font-size: 11px; font-weight: bold; white-space: nowrap; ${
-            isFail ? 'text-decoration: line-through; text-decoration-color: #d32f2f; color: #d32f2f;' : ''
-          }">
+          <td style="border: 1px solid #000; text-align: left; padding: 4px 6px; font-size: 11px; font-weight: bold; white-space: nowrap; ${strikethroughStyle}">
+            ${cellLineHtml}
             ${student.name}
           </td>
-          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px;">
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; ${strikethroughStyle}">
+            ${cellLineHtml}
             ${genderSymbol}
           </td>
 
           ${subjectCells}
-          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
-            isFail ? 'color: #d32f2f;' : ''
-          }">
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${strikethroughStyle}">
+            ${cellLineHtml}
             ${student.totalScore ?? '-'}
           </td>
-          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; ${
-            isFail ? 'color: #d32f2f;' : ''
-          }">
+          <td style="border: 1px solid #000; text-align: center; padding: 4px 2px; font-size: 11px; font-weight: bold; color: ${overallGradeColor}; ${strikethroughStyle}">
+            ${cellLineHtml}
             ${overallGrade}
           </td>
 
